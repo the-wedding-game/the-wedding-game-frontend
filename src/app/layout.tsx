@@ -26,10 +26,10 @@ export default function RootLayout({
       <body>
         <MantineProvider>
             <div className={`flex flex-col min-h-screen justify-between`}>
-                <div className={`flex flex-col`}>
+                <div className={`flex flex-col min-h-screen`}>
                     <Header/>
                     <div className={`flex w-full items-center justify-center`}>
-                        <div className={`w-[1200px] h-min-screen flex flex-row items-center justify-center mt-20`}>
+                        <div className={`w-[1200px] flex flex-row items-center justify-center mt-20`}>
                             {children}
                         </div>
                     </div>

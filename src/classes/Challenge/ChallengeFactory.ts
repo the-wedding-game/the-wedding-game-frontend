@@ -52,6 +52,7 @@ export class ChallengeFactory {
         
         try {
             const data = await response.json();
+            console.log("huh", data);
             return data.map((challenge: ChallengeResponse) => new Challenge(
                 challenge.id, challenge.name, challenge.description, challenge.points, challenge.image,
                 challenge.status, challenge.type
