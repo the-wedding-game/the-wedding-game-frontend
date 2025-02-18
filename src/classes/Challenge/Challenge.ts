@@ -1,4 +1,4 @@
-import {ChallengeType} from "@/classes/Challenge/ChallengeTypes";
+import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 
 export class Challenge {
     id: number;
@@ -8,9 +8,18 @@ export class Challenge {
     image: string;
     status: string;
     type: ChallengeType;
-    
-    constructor(id: number, name: string, description: string, points: number, image: string, status: string,
-                type: ChallengeType) {
+    completed: boolean;
+
+    constructor(
+        id: number,
+        name: string,
+        description: string,
+        points: number,
+        image: string,
+        status: string,
+        type: ChallengeType,
+        completed: boolean,
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -18,5 +27,6 @@ export class Challenge {
         this.image = image;
         this.status = status;
         this.type = type;
+        this.completed = completed;
     }
 }

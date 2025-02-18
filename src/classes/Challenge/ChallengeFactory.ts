@@ -1,7 +1,8 @@
-import {checkResponse} from "@/utils/http-utils";
-import {CannotProcessEntity} from "@/errors/CannotProcessEntity";
-import {Challenge} from "@/classes/Challenge/Challenge";
-import {ChallengeType} from "@/classes/Challenge/ChallengeTypes";
+import { checkResponse } from "@/utils/http-utils";
+import { CannotProcessEntity } from "@/errors/CannotProcessEntity";
+import { Challenge } from "@/classes/Challenge/Challenge";
+import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
+import { User } from "@/classes/User/User";
 
 export const ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/challenges`;
 
@@ -13,113 +14,132 @@ export type ChallengeResponse = {
     image: string;
     status: string;
     type: ChallengeType;
-}
+    completed: boolean;
+};
 
 export type CreateChallengeRequest = {
     name: string;
     description: string;
     points: number;
     image: string;
-    status: string;
     type: ChallengeType;
-}
+    answer?: string;
+};
 
 export type UpdateChallengeRequest = CreateChallengeRequest & {
     id: number;
+    status: string;
 };
 
 export class ChallengeFactory {
-    
     static async get(id: number): Promise<Challenge> {
         const response = await fetch(`${ENDPOINT}/${id}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
-            }
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${User.getAccessToken()}`,
+            },
         });
         checkResponse(response);
         return this.processResponse(response);
     }
-    
+
     static async getAll(): Promise<Challenge[]> {
         const response = await fetch(ENDPOINT, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
-            }
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${User.getAccessToken()}`,
+            },
         });
         checkResponse(response);
-        
+
         try {
             const data = await response.json();
-            console.log("huh", data);
-            return data.map((challenge: ChallengeResponse) => new Challenge(
-                challenge.id, challenge.name, challenge.description, challenge.points, challenge.image,
-                challenge.status, challenge.type
-            ));
+            return data.challenges.map(
+                (challenge: ChallengeResponse) =>
+                    new Challenge(
+                        challenge.id,
+                        challenge.name,
+                        challenge.description,
+                        challenge.points,
+                        challenge.image,
+                        challenge.status,
+                        challenge.type,
+                        challenge.completed,
+                    ),
+            );
         } catch (error) {
             if (error instanceof Error) {
-                throw new CannotProcessEntity('Challenge', error.message);
+                throw new CannotProcessEntity("Challenge", error.message);
             }
-            throw new CannotProcessEntity('Challenge', 'Unknown error');
+            throw new CannotProcessEntity("Challenge", "Unknown error");
         }
     }
-    
+
     static async create(request: CreateChallengeRequest): Promise<Challenge> {
         const response = await fetch(ENDPOINT, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${User.getAccessToken()}`,
             },
-            body: JSON.stringify(request)
+            body: JSON.stringify(request),
         });
         checkResponse(response);
         return this.processResponse(response);
     }
-    
-    static async update(challenge: Challenge): Promise<Challenge> {
-        const updateChallengeRequest: UpdateChallengeRequest = {
-            id: challenge.id,
-            name: challenge.name,
-            description: challenge.description,
-            points: challenge.points,
-            image: challenge.image,
-            status: challenge.status,
-            type: challenge.type
-        }
-        
-        const response = await fetch(`${ENDPOINT}/${challenge.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updateChallengeRequest)
-        });
-        checkResponse(response);
-        return this.processResponse(response);
-    }
-    
+
+    // static async update(challenge: Challenge): Promise<Challenge> {
+    //     const updateChallengeRequest: UpdateChallengeRequest = {
+    //         id: challenge.id,
+    //         name: challenge.name,
+    //         description: challenge.description,
+    //         points: challenge.points,
+    //         image: challenge.image,
+    //         status: challenge.status,
+    //         type: challenge.type,
+    //     };
+    //
+    //     const response = await fetch(`${ENDPOINT}/${challenge.id}`, {
+    //         method: "PUT",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(updateChallengeRequest),
+    //     });
+    //     checkResponse(response);
+    //     return this.processResponse(response);
+    // }
+    //
     static async delete(challenge: Challenge): Promise<void> {
         const response = await fetch(`${ENDPOINT}/${challenge.id}`, {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
-                'Content-Type': 'application/json',
-            }
+                "Content-Type": "application/json",
+            },
         });
         checkResponse(response);
     }
-    
+
     private static async processResponse(response: Response): Promise<Challenge> {
         try {
             const data: ChallengeResponse = await response.json();
-            return new Challenge(data.id, data.name, data.description, data.points, data.image, data.status, data.type);
+            return new Challenge(
+                data.id,
+                data.name,
+                data.description,
+                data.points,
+                data.image,
+                data.status,
+                data.type,
+                data.completed,
+            );
         } catch (error) {
             if (error instanceof Error) {
-                throw new CannotProcessEntity('Challenge', error.message);
+                throw new CannotProcessEntity("Challenge", error.message);
             }
-            throw new CannotProcessEntity('Challenge', 'Unknown error');
+            throw new CannotProcessEntity("Challenge", "Unknown error");
         }
-        
     }
-    
 }
