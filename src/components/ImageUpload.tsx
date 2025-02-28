@@ -8,9 +8,13 @@ import { useModal } from "@/components/modals/Modal";
 type Props = {
     image: string | null;
     setImage: (url: string | null) => void;
+    label?: string;
+    buttonText?: string;
 };
 
 export default function ImageUpload(props: Props) {
+    const buttonText = props.buttonText || "Upload";
+
     const hiddenFileInput = React.useRef(null);
     const { openModal } = useModal();
     const [loading, setLoading] = React.useState(false);
@@ -43,18 +47,21 @@ export default function ImageUpload(props: Props) {
 
     return (
         <div className={`flex flex-col space-y-2`}>
-            <div className={`flex flex-row space-x-1`}>
-                <Text size="sm" fw={500} className={`text-gray-700  font-bold`}>
-                    Cover image
-                </Text>
-                <Text size="sm" fw={500} c={`red`}>
-                    *
-                </Text>
-            </div>
+            {props.label && (
+                <div className={`flex flex-row space-x-1`}>
+                    <Text size="sm" fw={500} className={`text-gray-700  font-bold`}>
+                        {props.label}
+                    </Text>
+                    <Text size="sm" fw={500} c={`red`}>
+                        *
+                    </Text>
+                </div>
+            )}
+
             {!loading && !props.image && (
                 <div>
                     <Button type="button" variant="light" size="xs" onClick={handleUploadButtonClick}>
-                        Upload
+                        {buttonText}
                     </Button>
 
                     <FileInput
