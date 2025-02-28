@@ -40,7 +40,7 @@ export class ChallengeFactory {
                 Authorization: `Bearer ${User.getAccessToken()}`,
             },
         });
-        checkResponse(response);
+        await checkResponse(response);
         return this.processResponse(response);
     }
 
@@ -52,7 +52,7 @@ export class ChallengeFactory {
                 Authorization: `Bearer ${User.getAccessToken()}`,
             },
         });
-        checkResponse(response);
+        await checkResponse(response);
 
         try {
             const data = await response.json();
@@ -86,7 +86,7 @@ export class ChallengeFactory {
             },
             body: JSON.stringify(request),
         });
-        checkResponse(response);
+        await checkResponse(response);
         return this.processResponse(response);
     }
 
@@ -119,7 +119,7 @@ export class ChallengeFactory {
                 "Content-Type": "application/json",
             },
         });
-        checkResponse(response);
+        await checkResponse(response);
     }
 
     private static async processResponse(response: Response): Promise<Challenge> {
