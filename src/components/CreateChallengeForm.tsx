@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useForm } from "@mantine/form";
@@ -80,7 +81,7 @@ export default function CreateChallengeForm() {
 
                 <NumberInput withAsterisk label="Points" key={form.key("points")} {...form.getInputProps("points")} />
 
-                <ImageUpload image={coverPhoto} setImage={setCoverPhoto} />
+                <ImageUpload image={coverPhoto} setImage={setCoverPhoto} label={"Cover photo"} />
 
                 <NativeSelect
                     withAsterisk
@@ -91,7 +92,12 @@ export default function CreateChallengeForm() {
                 />
 
                 {showAnswerField && (
-                    <TextInput withAsterisk label="Answer" key={form.key("answer")} {...form.getInputProps("answer")} />
+                    <TextInput
+                        withAsterisk
+                        label="PhotoSubmission"
+                        key={form.key("answer")}
+                        {...form.getInputProps("answer")}
+                    />
                 )}
 
                 <Button type="submit" mt="sm" disabled={!form.isValid()}>

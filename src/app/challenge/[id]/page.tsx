@@ -7,10 +7,30 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { Answer } from "@/classes/Answer/Answer";
 import { useModal } from "@/components/modals/Modal";
+import ImageUpload from "@/components/ImageUpload";
+
+const MESSAGES = {
+    NO_ANSWER: {
+        ANSWER_QUESTION: "Please enter an answer before submitting.",
+        UPLOAD_PHOTO: "Please upload a photo before submitting.",
+    },
+    ERROR: {
+        ANSWER_QUESTION: "There was an error verifying your answer. Please try again later.",
+        UPLOAD_PHOTO: "There was an error verifying your photo. Please try again later.",
+    },
+    SUCCESS: {
+        ANSWER_QUESTION: "That answer was correct! You have completed the challenge!",
+        UPLOAD_PHOTO: "Congratulations! You have completed the challenge!",
+    },
+    FAILURE: {
+        ANSWER_QUESTION: "That answer was wrong. Maybe try again?",
+        UPLOAD_PHOTO: "That photo was wrong. Maybe try again?",
+    },
+};
 
 export default function Challenge() {
     useUser();
-    const [answer, setAnswer] = useState<string>("");
+    const [answer, setAnswer] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [answerCorrect, setAnswerCorrect] = useState<boolean>(false);
     const [answerChanged, setAnswerChanged] = useState<boolean>(false);
@@ -28,21 +48,28 @@ export default function Challenge() {
     }
 
     async function submitAnswer() {
+        if (!challenge) throw new Error("Challenge not found");
         setLoading(true);
         setAnswerChanged(true);
+
+        if (!answer) {
+            openModal("Oopsie! ☹️", MESSAGES.NO_ANSWER[challenge.type], "error");
+            setLoading(false);
+            return;
+        }
 
         const answerObj = new Answer(Number(id), answer);
         try {
             if (await answerObj.verify()) {
                 setAnswerCorrect(true);
-                openModal("Congratulations!", "That answer was correct! You have completed the challenge!", "success");
+                openModal("Congratulations!", MESSAGES.SUCCESS[challenge.type], "success");
             } else {
                 setAnswerCorrect(false);
-                openModal("Oopsie! ☹️", "That answer was wrong. Maybe try again?", "error");
+                openModal("Oopsie! ☹️", MESSAGES.FAILURE[challenge.type], "error");
             }
         } catch (e) {
             console.log(e);
-            openModal("Oopsie! ☹️", "There was an error verifying your answer. Please try again later.", "error");
+            openModal("Oopsie! ☹️", MESSAGES.ERROR[challenge.type], "error");
         } finally {
             setLoading(false);
         }
@@ -64,7 +91,14 @@ export default function Challenge() {
 
             <div className={`flex flex-row space-x-5`}>
                 <div className={`w-96 h-96`}>
-                    <Image src={challenge.image} alt={challenge.name} radius="md" h={"388"} fit={"cover"} />
+                    <Image
+                        src={challenge.image}
+                        alt={challenge.name}
+                        radius="md"
+                        h={"388"}
+                        fit={"cover"}
+                        className={`border-2 border-gray-200`}
+                    />
                 </div>
 
                 <div className={`flex flex-col w-96 justify-between`}>
@@ -90,7 +124,6 @@ export default function Challenge() {
                                         placeholder="Your answer"
                                         radius="sm"
                                         mt="sm"
-                                        value={answer}
                                         onChange={(e) => {
                                             handleChangeAnswer(e);
                                         }}
@@ -118,6 +151,23 @@ export default function Challenge() {
                                             loading={loading}
                                         >
                                             Submit answer
+                                        </Button>
+                                    )}
+                                </div>
+                            )}
+
+                            {challenge.type === "UPLOAD_PHOTO" && (
+                                <div className={`flex flex-col w-32 items-start space-y-5`}>
+                                    <ImageUpload
+                                        image={answer}
+                                        setImage={setAnswer}
+                                        buttonText={"Upload photo"}
+                                        label={"Your submission"}
+                                    />
+
+                                    {answer && (
+                                        <Button size={"xs"} onClick={() => submitAnswer()}>
+                                            Submit
                                         </Button>
                                     )}
                                 </div>
