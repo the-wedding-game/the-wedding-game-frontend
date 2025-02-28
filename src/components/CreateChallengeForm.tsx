@@ -3,11 +3,20 @@
 import { useForm } from "@mantine/form";
 import { Button, NativeSelect, NumberInput, Textarea, TextInput, Title } from "@mantine/core";
 import { CHALLENGE_TYPES, ChallengeType } from "@/classes/Challenge/ChallengeTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChallengeFactory } from "@/classes/Challenge/ChallengeFactory";
+import { useModal } from "@/components/modals/Modal";
+import ImageUpload from "@/components/ImageUpload";
 
 export default function CreateChallengeForm() {
     const [showAnswerField, setShowAnswerField] = useState(false);
+    const { openModal } = useModal();
+    const [coverPhoto, setCoverPhoto] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (coverPhoto) form.setFieldValue("image", coverPhoto);
+        else form.setFieldValue("image", "");
+    }, [coverPhoto]);
 
     const form = useForm({
         mode: "uncontrolled",
@@ -39,8 +48,13 @@ export default function CreateChallengeForm() {
     });
 
     async function submitForm(values: typeof form.values) {
-        const challengeCreated = await ChallengeFactory.create(values);
-        console.log(challengeCreated);
+        try {
+            await ChallengeFactory.create(values);
+            openModal("Success! 😄", "Challenge created successfully!", "success");
+        } catch (error) {
+            if (error instanceof Error) openModal("Oh no! ☹️", error.message, "error");
+            else openModal("Oh no! ☹️", "There was an error creating the challenge. Please try again later.", "error");
+        }
     }
 
     return (
@@ -66,7 +80,7 @@ export default function CreateChallengeForm() {
 
                 <NumberInput withAsterisk label="Points" key={form.key("points")} {...form.getInputProps("points")} />
 
-                <TextInput withAsterisk label="Cover image" key={form.key("image")} {...form.getInputProps("image")} />
+                <ImageUpload image={coverPhoto} setImage={setCoverPhoto} />
 
                 <NativeSelect
                     withAsterisk
@@ -80,7 +94,7 @@ export default function CreateChallengeForm() {
                     <TextInput withAsterisk label="Answer" key={form.key("answer")} {...form.getInputProps("answer")} />
                 )}
 
-                <Button type="submit" mt="sm">
+                <Button type="submit" mt="sm" disabled={!form.isValid()}>
                     Submit
                 </Button>
             </form>
