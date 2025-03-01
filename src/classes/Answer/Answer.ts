@@ -1,7 +1,4 @@
-import { AnswerVerificationRequest, AnswerVerificationResponse } from "@/classes/Answer/AnswerTypes";
-import { User } from "@/classes/User/User";
-
-const ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/challenges`;
+import { VerifyAnswerRequest } from "@/api/challenges/verify-answer/VerifyAnswerRequest";
 
 export class Answer {
     challengeId: number;
@@ -13,24 +10,8 @@ export class Answer {
     }
 
     async verify(): Promise<boolean> {
-        const requestBody: AnswerVerificationRequest = {
-            answer: this.answer,
-        };
-
-        const response = await fetch(`${ENDPOINT}/${this.challengeId}/verify`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${User.getAccessToken()}`,
-            },
-            body: JSON.stringify(requestBody),
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to verify answer");
-        }
-
-        const data: AnswerVerificationResponse = await response.json();
-        return data.correct;
+        const request = new VerifyAnswerRequest(this.challengeId, this.answer);
+        const response = await request.send();
+        return response.getStatus();
     }
 }

@@ -1,17 +1,17 @@
 import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { UserRole } from "@/classes/User/UserTypes";
 
-interface LoginResponseBody {
+export type LoginResponseBody = {
     access_token: string;
     user: {
         username: string;
         role: UserRole;
     };
-}
+};
 
-export class LoginResponse implements LoginResponseBody {
-    access_token: string;
-    user: {
+export class LoginResponse {
+    private readonly access_token: string;
+    private readonly user: {
         username: string;
         role: UserRole;
     };
