@@ -1,6 +1,7 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
 import { Badge, Card, CardSection, Group, Image, Text } from "@mantine/core";
-import ViewChallengeButton from "@/components/Buttons/ViewChallengeButton";
+import ViewChallengeButton from "@/components/buttons/ViewChallengeButton";
+import ChallengeCompletedBadge from "@/components/badges/ChallengeCompletedBadge";
 
 type Props = {
     challenge: Challenge;
@@ -38,13 +39,7 @@ export default function ChallengeMiniCard(props: Props) {
 
                 {!challenge.completed && <ViewChallengeButton challengeId={challenge.id} />}
 
-                {challenge.completed && (
-                    <div>
-                        <Badge color="green" radius="sm">
-                            Completed
-                        </Badge>
-                    </div>
-                )}
+                {challenge.completed && <ChallengeCompletedBadge />}
             </div>
         </Card>
     );
