@@ -1,4 +1,4 @@
-import { VerifyAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer.ts/VerifyAnswerResponse";
+import { VerifyAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer/VerifyAnswerResponse";
 import { PrivilegedRequest } from "@/api/PrivilegedRequest";
 
 const METHOD = "POST";

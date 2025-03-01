@@ -1,4 +1,4 @@
-import { VerifyAnswerRequest } from "@/api/challenges/verify-answer.ts/VerifyAnswerRequest";
+import { VerifyAnswerRequest } from "@/api/challenges/verify-answer/VerifyAnswerRequest";
 
 export class Answer {
     challengeId: number;
