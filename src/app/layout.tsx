@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from "@mantine/core";
 import { Suspense } from "react";
-import Header from "@/components/Header";
+import Header from "@/components/groups/header/Header";
 import Footer from "@/components/groups/footer/Footer";
 import { ModalProvider } from "@/components/modals/Modal";
 
