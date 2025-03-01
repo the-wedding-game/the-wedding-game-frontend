@@ -1,4 +1,4 @@
-import FooterLinks from "@/components/groups/footer/FooterLinks";
+import FooterLink from "@/components/groups/footer/FooterLink";
 import FooterTagline from "@/components/groups/footer/FooterTagline";
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
         >
             <div className={`flex w-[1200px] justify-between items-center`}>
                 <FooterTagline />
-                <FooterLinks />
+                <FooterLink />
             </div>
         </div>
     );

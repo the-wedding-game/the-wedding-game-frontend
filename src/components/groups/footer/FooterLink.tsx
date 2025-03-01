@@ -1,6 +1,6 @@
 import FooterLinkButton from "@/components/buttons/FooterLinkButton";
 
-export default function FooterLinks() {
+export default function FooterLink() {
     return (
         <div className={`flex flex-row space-x-5`}>
             <FooterLinkButton text={"GitHub"} link={"#"} />
