@@ -1,6 +1,6 @@
 import { UserRole } from "@/classes/User/UserTypes";
 import { NotLoggedInError } from "@/errors/NotLoggedInError";
-import { LoginRequest } from "@/api/login/LoginRequest";
+import { LoginRequest } from "@/api/auth/login/LoginRequest";
 
 export class User {
     username: string;
