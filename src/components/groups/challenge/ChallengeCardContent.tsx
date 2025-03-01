@@ -1,8 +1,8 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
-import ChallengeHeader from "@/components/groups/ChallengeHeader";
+import ChallengeHeader from "@/components/groups/challenge/ChallengeHeader";
 import ViewChallengeButton from "@/components/buttons/ViewChallengeButton";
 import ChallengeCompletedBadge from "@/components/badges/ChallengeCompletedBadge";
-import ChallengeDescription from "@/components/groups/ChallengeDescription";
+import ChallengeDescription from "@/components/groups/challenge/ChallengeDescription";
 
 type Props = {
     challenge: Challenge;

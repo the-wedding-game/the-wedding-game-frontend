@@ -1,7 +1,7 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
 import { Card } from "@mantine/core";
-import ChallengeCardContent from "@/components/groups/ChallengeCardContent";
-import ChallengeCardImage from "@/components/groups/ChallengeCardImage";
+import ChallengeCardContent from "@/components/groups/challenge/ChallengeCardContent";
+import ChallengeCardImage from "@/components/groups/challenge/ChallengeCardImage";
 
 type Props = {
     challenge: Challenge;
