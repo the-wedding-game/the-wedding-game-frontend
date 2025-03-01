@@ -1,6 +1,6 @@
 "use client";
 
-import ChallengeMiniCard from "@/components/ChallengeMiniCard";
+import ChallengeCard from "@/components/cards/ChallengeCard";
 import { Loader, Text, Title } from "@mantine/core";
 import WelcomeBar from "@/components/WelcomeBar";
 import { useAllChallenges } from "@/classes/Challenge/AllChallengesHook";
@@ -25,7 +25,7 @@ export default function Home() {
                 {challenges !== null && challenges.length !== 0 && (
                     <div className={`grid grid-cols-3 gap-8 justify-start`}>
                         {challenges.map((challenge, index) => (
-                            <ChallengeMiniCard key={index} challenge={challenge} />
+                            <ChallengeCard key={index} challenge={challenge} />
                         ))}
                     </div>
                 )}
