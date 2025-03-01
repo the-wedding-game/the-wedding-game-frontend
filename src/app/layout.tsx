@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     description: "Welcome to the wedding game!",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
+type Props = {
     children: React.ReactNode;
-}>) {
+};
+
+export default function RootLayout(props: Props) {
     return (
         <html lang="en" {...mantineHtmlProps}>
             <head>
@@ -24,17 +24,20 @@ export default function RootLayout({
                     <ColorSchemeScript />
                 </Suspense>
             </head>
+
             <body>
                 <MantineProvider>
                     <div className={`flex flex-col min-h-screen justify-between`}>
-                        <div className={`flex flex-col min-h-screen`}>
+                        <div>
                             <Header />
-                            <div className={`flex w-full items-center justify-center`}>
-                                <div className={`w-[1200px] flex flex-row items-center justify-center mt-10`}>
-                                    <ModalProvider>{children}</ModalProvider>
+
+                            <div className={`flex w-full justify-center items-start`}>
+                                <div className={`w-[1200px] flex flex-row mt-10 items-start`}>
+                                    <ModalProvider>{props.children}</ModalProvider>
                                 </div>
                             </div>
                         </div>
+
                         <Footer />
                     </div>
                 </MantineProvider>
