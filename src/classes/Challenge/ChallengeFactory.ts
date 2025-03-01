@@ -1,5 +1,5 @@
 import { checkResponse } from "@/utils/http-utils";
-import { CannotProcessEntity } from "@/errors/CannotProcessEntity";
+import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { Challenge } from "@/classes/Challenge/Challenge";
 import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 import { User } from "@/classes/User/User";
@@ -71,9 +71,9 @@ export class ChallengeFactory {
             );
         } catch (error) {
             if (error instanceof Error) {
-                throw new CannotProcessEntity("Challenge", error.message);
+                throw new CannotProcessEntityError("Challenge", error.message);
             }
-            throw new CannotProcessEntity("Challenge", "Unknown error");
+            throw new CannotProcessEntityError("Challenge", "Unknown error");
         }
     }
 
@@ -137,9 +137,9 @@ export class ChallengeFactory {
             );
         } catch (error) {
             if (error instanceof Error) {
-                throw new CannotProcessEntity("Challenge", error.message);
+                throw new CannotProcessEntityError("Challenge", error.message);
             }
-            throw new CannotProcessEntity("Challenge", "Unknown error");
+            throw new CannotProcessEntityError("Challenge", "Unknown error");
         }
     }
 }
