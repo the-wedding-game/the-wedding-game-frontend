@@ -1,4 +1,4 @@
-export const MESSAGES = {
+export const ANSWER_VERIFICATION_MESSAGES = {
     NO_ANSWER: {
         ANSWER_QUESTION: "Please enter an answer before submitting.",
         UPLOAD_PHOTO: "Please upload a photo before submitting.",

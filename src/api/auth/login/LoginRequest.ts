@@ -4,6 +4,10 @@ import { LoginResponse, LoginResponseBody } from "@/api/auth/login/LoginResponse
 const ENDPOINT = "auth/login";
 const METHOD = "POST";
 
+export type LoginRequestBody = {
+    username: string;
+};
+
 export class LoginRequest extends APIRequest {
     private readonly username: string;
 
@@ -13,10 +17,10 @@ export class LoginRequest extends APIRequest {
     }
 
     public async send(): Promise<LoginResponse> {
-        const response = (await super.send({
+        const requestBody: LoginRequestBody = {
             username: this.username,
-        })) as LoginResponseBody;
-
+        };
+        const response = (await super.send(requestBody)) as LoginResponseBody;
         return new LoginResponse(response);
     }
 }

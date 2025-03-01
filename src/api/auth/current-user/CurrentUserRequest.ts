@@ -1,5 +1,5 @@
-import { CurrentUserResponse, CurrentUserResponseBody } from "@/api/auth/current-user/CurrentUserResponse";
 import { PrivilegedRequest } from "@/api/PrivilegedRequest";
+import { CurrentUserResponse, CurrentUserResponseBody } from "@/api/auth/current-user/CurrentUserResponse";
 
 const ENDPOINT = "auth/current-user";
 const METHOD = "GET";

@@ -1,6 +1,6 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
 import React from "react";
-import { MESSAGES } from "@/constants/challenges";
+import { ANSWER_VERIFICATION_MESSAGES } from "@/constants/challenges";
 import { Answer } from "@/classes/Answer/Answer";
 import { useModal } from "@/components/modals/Modal";
 import SubmitAnswerSubmission from "@/components/forms/submit-answer/SubmitAnswerSubmission";
@@ -15,22 +15,22 @@ export default function ChallengeSubmissionGroup(props: Props) {
 
     async function submitAnswer(answer: string | null): Promise<boolean> {
         if (!answer) {
-            openModal("Oopsie! ☹️", MESSAGES.NO_ANSWER[props.challenge.type], "error");
+            openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.NO_ANSWER[props.challenge.type], "error");
             return false;
         }
 
         const answerObj = new Answer(Number(props.challenge.id), answer);
         try {
             if (await answerObj.verify()) {
-                openModal("Congratulations!", MESSAGES.SUCCESS[props.challenge.type], "success");
+                openModal("Congratulations!", ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], "success");
                 return true;
             } else {
-                openModal("Oopsie! ☹️", MESSAGES.FAILURE[props.challenge.type], "error");
+                openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type], "error");
                 return false;
             }
         } catch (e) {
             console.log(e);
-            openModal("Oopsie! ☹️", MESSAGES.ERROR[props.challenge.type], "error");
+            openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.ERROR[props.challenge.type], "error");
         }
 
         return false;
