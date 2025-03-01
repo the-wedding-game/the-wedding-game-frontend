@@ -13,7 +13,7 @@ export class UserFactory {
                 Authorization: `Bearer ${User.getAccessToken()}`,
             },
         });
-        checkResponse(response);
+        await checkResponse(response);
 
         if (!response.ok) {
             throw new NotLoggedInError();

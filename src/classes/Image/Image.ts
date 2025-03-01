@@ -1,6 +1,6 @@
 import { User } from "@/classes/User/User";
 import { checkResponse } from "@/utils/http-utils";
-import { CannotProcessEntity } from "@/errors/CannotProcessEntity";
+import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 
 export const ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/upload`;
 
@@ -21,9 +21,9 @@ export class Image {
             return data.url;
         } catch (error) {
             if (error instanceof Error) {
-                throw new CannotProcessEntity("Image", error.message);
+                throw new CannotProcessEntityError("Image", error.message);
             }
-            throw new CannotProcessEntity("Image", "Unknown error");
+            throw new CannotProcessEntityError("Image", "Unknown error");
         }
     }
 
