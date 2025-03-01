@@ -12,8 +12,8 @@ export class LoginRequest extends APIRequest {
         this.username = username;
     }
 
-    public async fetch(): Promise<LoginResponse> {
-        const response = (await super.fetch({
+    public async send(): Promise<LoginResponse> {
+        const response = (await super.send({
             username: this.username,
         })) as LoginResponseBody;
 
