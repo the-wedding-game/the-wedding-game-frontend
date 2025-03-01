@@ -21,7 +21,7 @@ export class User {
 
     public static async login(username: string) {
         const loginRequest = new LoginRequest(username);
-        const loginResponse = await loginRequest.fetch();
+        const loginResponse = await loginRequest.send();
         localStorage.setItem("accessToken", loginResponse.getAccessToken());
     }
 }

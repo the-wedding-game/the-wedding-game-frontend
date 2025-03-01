@@ -11,7 +11,7 @@ export abstract class APIRequest {
         this.addHeader("Content-Type", "application/json");
     }
 
-    public async send(body: object): Promise<object> {
+    public async send(body?: object): Promise<object> {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/${this.endpoint}`, {
             method: this.method,
             headers: Object.fromEntries(this.headers),

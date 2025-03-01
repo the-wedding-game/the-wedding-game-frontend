@@ -7,7 +7,7 @@ export abstract class PrivilegedRequest extends APIRequest {
         this.addHeader("Authorization", `Bearer ${User.getAccessToken()}`);
     }
 
-    public async send(body: object): Promise<object> {
+    public async send(body?: object): Promise<object> {
         return await super.send(body);
     }
 }
