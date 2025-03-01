@@ -90,38 +90,6 @@ export class ChallengeFactory {
         return this.processResponse(response);
     }
 
-    // static async update(challenge: Challenge): Promise<Challenge> {
-    //     const updateChallengeRequest: UpdateChallengeRequest = {
-    //         id: challenge.id,
-    //         name: challenge.name,
-    //         description: challenge.description,
-    //         points: challenge.points,
-    //         image: challenge.image,
-    //         status: challenge.status,
-    //         type: challenge.type,
-    //     };
-    //
-    //     const response = await fetch(`${ENDPOINT}/${challenge.id}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(updateChallengeRequest),
-    //     });
-    //     checkResponse(response);
-    //     return this.processResponse(response);
-    // }
-    //
-    static async delete(challenge: Challenge): Promise<void> {
-        const response = await fetch(`${ENDPOINT}/${challenge.id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        await checkResponse(response);
-    }
-
     private static async processResponse(response: Response): Promise<Challenge> {
         try {
             const data: ChallengeResponse = await response.json();
