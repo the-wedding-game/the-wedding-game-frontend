@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { Answer } from "@/classes/Answer/Answer";
 import { useModal } from "@/components/modals/Modal";
-import ImageUpload from "@/components/ImageUpload";
+import ImageUpload from "@/components/inputs/ImageUpload/ImageUpload";
 
 const MESSAGES = {
     NO_ANSWER: {
