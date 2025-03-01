@@ -4,7 +4,7 @@
 import { NativeSelect, NumberInput, Textarea, TextInput } from "@mantine/core";
 import { CHALLENGE_TYPES } from "@/classes/Challenge/ChallengeTypes";
 import { useEffect, useState } from "react";
-import ImageUpload from "@/components/inputs/ImageUpload";
+import ImageUpload from "@/components/inputs/ImageUpload/ImageUpload";
 import useCreateChallengeForm from "@/hooks/CreateChallengeFormHook";
 import SubmitButton from "@/components/buttons/SubmitButton";
 
