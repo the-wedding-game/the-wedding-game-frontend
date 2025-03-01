@@ -1,7 +1,6 @@
 import { UserRole } from "@/classes/User/UserTypes";
 import { NotLoggedInError } from "@/errors/NotLoggedInError";
-import { checkResponse } from "@/utils/http-utils";
-import { LoginResponse } from "@/api/login/LoginResponse";
+import { LoginRequest } from "@/api/login/LoginRequest";
 
 export class User {
     username: string;
@@ -21,18 +20,8 @@ export class User {
     }
 
     public static async login(username: string) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: username,
-            }),
-        });
-
-        await checkResponse(response);
-        const loginResponse = new LoginResponse(await response.json());
+        const loginRequest = new LoginRequest(username);
+        const loginResponse = await loginRequest.fetch();
         localStorage.setItem("accessToken", loginResponse.getAccessToken());
     }
 }
