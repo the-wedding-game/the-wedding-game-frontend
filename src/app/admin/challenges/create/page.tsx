@@ -2,7 +2,7 @@
 
 import { useUser } from "@/classes/User/UserHook";
 import { Card } from "@mantine/core";
-import CreateChallengeForm from "@/components/CreateChallengeForm";
+import CreateChallengeForm from "@/components/forms/CreateChallengeForm";
 
 export default function CreateChallenge() {
     useUser();
