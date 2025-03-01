@@ -8,12 +8,12 @@ import {
     validateChallengePoints,
     validateChallengeType,
 } from "@/utils/validators";
+import { ChallengeFactory } from "@/classes/Challenge/ChallengeFactory";
+import { useModal } from "@/components/modals/Modal";
 
-type Props = {
-    setShowAnswerField: (value: boolean) => void;
-};
+export default function useCreateChallengeForm() {
+    const { openModal } = useModal();
 
-export default function useCreateChallengeForm(props: Props) {
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {
@@ -35,13 +35,19 @@ export default function useCreateChallengeForm(props: Props) {
         validateInputOnChange: true,
     });
 
-    form.watch("type", (type) => {
-        if (type.value === CHALLENGE_TYPES.ANSWER_QUESTION.value) {
-            props.setShowAnswerField(true);
-        } else {
-            props.setShowAnswerField(false);
+    const submit = async function () {
+        try {
+            const values = form.getValues();
+            await ChallengeFactory.create(values);
+            openModal("Success! 😄", "Challenge created successfully!", "success");
+        } catch (error) {
+            if (error instanceof Error) openModal("Oh no! ☹️", error.message, "error");
+            else openModal("Oh no! ☹️", "There was an error creating the challenge. Please try again later.", "error");
         }
-    });
+    };
 
-    return form;
+    return {
+        form: form,
+        submit: submit,
+    };
 }

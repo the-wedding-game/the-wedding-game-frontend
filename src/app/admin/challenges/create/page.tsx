@@ -2,14 +2,14 @@
 
 import { useUser } from "@/classes/User/UserHook";
 import { Card } from "@mantine/core";
-import CreateChallengeForm from "@/components/forms/CreateChallengeForm";
+import CreateChallengeFormOuter from "@/components/forms/create-challenge/CreateChallengeFormOuter";
 
 export default function CreateChallenge() {
     useUser();
 
     return (
         <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96 w-full`}>
-            <CreateChallengeForm />
+            <CreateChallengeFormOuter />
         </Card>
     );
 }
