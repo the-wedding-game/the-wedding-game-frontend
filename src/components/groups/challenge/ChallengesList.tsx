@@ -1,23 +1,27 @@
 import { Loader } from "@mantine/core";
-import { useAllChallenges } from "@/classes/Challenge/AllChallengesHook";
+import { Challenge } from "@/classes/Challenge/Challenge";
 import ChallengeCard from "@/components/cards/ChallengeCard";
 
-export default function ChallengesList() {
-    const challenges = useAllChallenges();
+type Props = {
+    challenges: Challenge[] | undefined;
+};
 
+export default function ChallengesList(props: Props) {
     return (
-        <>
-            {challenges !== null && challenges.length !== 0 && (
+        <div>
+            {props.challenges && props.challenges.length !== 0 && (
                 <div className={`grid grid-cols-3 gap-8 justify-start`}>
-                    {challenges.map((challenge, index) => (
+                    {props.challenges.map((challenge, index) => (
                         <ChallengeCard key={index} challenge={challenge} />
                     ))}
                 </div>
             )}
 
-            {challenges == null && <Loader />}
+            {!props.challenges && <Loader />}
 
-            {challenges !== null && challenges.length > 0 && <p className={`text-gray-500`}>No challenges found.</p>}
-        </>
+            {props.challenges && props.challenges.length == 0 && (
+                <p className={`text-gray-500`}>No challenges found.</p>
+            )}
+        </div>
     );
 }

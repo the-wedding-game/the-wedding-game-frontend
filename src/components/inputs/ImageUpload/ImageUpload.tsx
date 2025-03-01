@@ -1,7 +1,7 @@
 "use client";
 
 import { Loader } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import ImageUploadLabel from "@/components/inputs/ImageUpload/ImageUploadLabel";
 import ImageUploadHandler from "@/components/inputs/ImageUpload/ImageUploadHandler";
 import ImagePreview from "@/components/inputs/ImageUpload/ImagePreview";
@@ -17,7 +17,7 @@ type Props = {
 export default function ImageUpload(props: Props) {
     const disableRemove = props.disableRemove || false;
 
-    const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = useState(false);
 
     return (
         <div className={`flex flex-col space-y-2`}>
