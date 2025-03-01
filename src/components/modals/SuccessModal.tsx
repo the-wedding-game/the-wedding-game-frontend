@@ -1,5 +1,5 @@
-import { Button, Modal, Text, Title } from "@mantine/core";
 import React from "react";
+import BaseModal from "@/components/modals/BaseModal";
 
 type Props = {
     title: string;
@@ -8,25 +8,14 @@ type Props = {
     onClose: () => void;
 };
 
-export default function SuccessModal(props: Props) {
+export default function ErrorModal(props: Props) {
     return (
-        <Modal
+        <BaseModal
+            title={props.title}
+            message={props.message}
             opened={props.opened}
             onClose={props.onClose}
-            withCloseButton={false}
-            transitionProps={{ transition: "fade", duration: 600, timingFunction: "linear" }}
-            centered={true}
-        >
-            <div className={`flex flex-col space-y-5 items-start`}>
-                <div className={`flex flex-col space-y-2 items-start`}>
-                    <Title order={3}>{props.title}</Title>
-                    <Text>{props.message}</Text>
-                </div>
-
-                <Button onClick={props.onClose} className={`w-1`}>
-                    Yay! :)
-                </Button>
-            </div>
-        </Modal>
+            buttonText={"OK :)"}
+        />
     );
 }
