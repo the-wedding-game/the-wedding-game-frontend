@@ -2,7 +2,7 @@
 
 import ChallengeCard from "@/components/cards/ChallengeCard";
 import { Loader, Text, Title } from "@mantine/core";
-import WelcomeBar from "@/components/WelcomeBar";
+import WelcomeBar from "@/components/groups/welcome-bar/WelcomeBar";
 import { useAllChallenges } from "@/classes/Challenge/AllChallengesHook";
 
 export default function Home() {
