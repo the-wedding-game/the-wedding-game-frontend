@@ -1,8 +1,8 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
-import ChallengeHeader from "@/components/groups/challenge/ChallengeHeader";
+import ChallengeCardHeader from "@/components/groups/challenge/challenge-card/ChallengeCardHeader";
 import ViewChallengeButton from "@/components/buttons/ViewChallengeButton";
 import ChallengeCompletedBadge from "@/components/badges/ChallengeCompletedBadge";
-import ChallengeDescription from "@/components/groups/challenge/ChallengeDescription";
+import ChallengeCardDescription from "@/components/groups/challenge/challenge-card/ChallengeCardDescription";
 
 type Props = {
     challenge: Challenge;
@@ -12,8 +12,8 @@ export default function ChallengeCardContent(props: Props) {
     return (
         <div className={`flex flex-col justify-between items-baseline h-full space-y-5`}>
             <div className={`flex flex-col w-full`}>
-                <ChallengeHeader challenge={props.challenge} />
-                <ChallengeDescription description={props.challenge.description} />
+                <ChallengeCardHeader challenge={props.challenge} />
+                <ChallengeCardDescription description={props.challenge.description} />
             </div>
 
             {!props.challenge.completed && <ViewChallengeButton challengeId={props.challenge.id} />}

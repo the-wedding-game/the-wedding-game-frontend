@@ -1,7 +1,7 @@
 import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { UserRole } from "@/classes/User/UserTypes";
 
-interface LoginResponseData {
+interface LoginResponseBody {
     access_token: string;
     user: {
         username: string;
@@ -9,14 +9,14 @@ interface LoginResponseData {
     };
 }
 
-export class LoginResponse implements LoginResponseData {
+export class LoginResponse implements LoginResponseBody {
     access_token: string;
     user: {
         username: string;
         role: UserRole;
     };
 
-    public constructor(data: LoginResponseData) {
+    public constructor(data: LoginResponseBody) {
         this.access_token = data.access_token;
         this.user = data.user;
         this.check();

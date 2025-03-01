@@ -4,9 +4,9 @@ type Props = {
     description: string;
 };
 
-export default function ChallengeDescription(props: Props) {
+export default function ChallengePageDescription(props: Props) {
     return (
-        <Text size="sm" c="dimmed">
+        <Text size="md" className={`text-gray-500`}>
             {props.description}
         </Text>
     );

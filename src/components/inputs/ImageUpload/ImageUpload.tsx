@@ -11,9 +11,12 @@ type Props = {
     setImage: (url: string | null) => void;
     label: string;
     buttonText?: string;
+    disableRemove?: boolean;
 };
 
 export default function ImageUpload(props: Props) {
+    const disableRemove = props.disableRemove || false;
+
     const [loading, setLoading] = React.useState(false);
 
     return (
@@ -24,7 +27,13 @@ export default function ImageUpload(props: Props) {
 
             {loading && <Loader size={"sm"} />}
 
-            {props.image && <ImagePreview image={props.image} removeImage={() => props.setImage(null)} />}
+            {props.image && (
+                <ImagePreview
+                    image={props.image}
+                    removeImage={() => props.setImage(null)}
+                    disableRemove={disableRemove}
+                />
+            )}
         </div>
     );
 }

@@ -7,7 +7,7 @@ type Props = {
     challenge: Challenge;
 };
 
-export default function ChallengeHeader(props: Props) {
+export default function ChallengeCardHeader(props: Props) {
     return (
         <Group justify="space-between" mt="md" mb="xs">
             <ChallengeNameText name={props.challenge.name} />
