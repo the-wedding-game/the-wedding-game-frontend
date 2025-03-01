@@ -1,5 +1,7 @@
+"use client";
+
 import { Loader } from "@mantine/core";
-import { useAllChallenges } from "@/classes/Challenge/AllChallengesHook";
+import { useAllChallenges } from "@/hooks/AllChallengesHook";
 import ChallengeCard from "@/components/cards/ChallengeCard";
 
 export default function ChallengesList() {

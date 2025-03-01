@@ -13,6 +13,7 @@ import ChallengeSubmissionGroup from "@/components/groups/challenge/challenge-pa
 
 export default function Challenge() {
     useUser();
+
     const id = useParams<{ id: string }>().id;
     const challenge = useChallenge(Number(id));
 

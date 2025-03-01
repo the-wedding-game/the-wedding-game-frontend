@@ -1,5 +1,3 @@
-"use client";
-
 import WelcomeBar from "@/components/groups/welcome-bar/WelcomeBar";
 import ChallengesList from "@/components/groups/challenge/ChallengesList";
 import ChallengesListHeader from "@/components/groups/challenge/ChallengesListHeader";
