@@ -3,6 +3,8 @@ import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { Challenge } from "@/classes/Challenge/Challenge";
 import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 import { User } from "@/classes/User/User";
+import { GetChallengeRequest } from "@/api/challenges/get-challenge/GetChallengeRequest";
+import { GetAllChallengesRequest } from "@/api/challenges/get-all-challenges/GetAllChallengesRequest";
 
 export const ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/challenges`;
 
@@ -33,48 +35,15 @@ export type UpdateChallengeRequest = CreateChallengeRequest & {
 
 export class ChallengeFactory {
     static async get(id: number): Promise<Challenge> {
-        const response = await fetch(`${ENDPOINT}/${id}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${User.getAccessToken()}`,
-            },
-        });
-        await checkResponse(response);
-        return this.processResponse(response);
+        const request = new GetChallengeRequest(id);
+        const response = await request.send();
+        return response.getChallenge();
     }
 
     static async getAll(): Promise<Challenge[]> {
-        const response = await fetch(ENDPOINT, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${User.getAccessToken()}`,
-            },
-        });
-        await checkResponse(response);
-
-        try {
-            const data = await response.json();
-            return data.challenges.map(
-                (challenge: ChallengeResponse) =>
-                    new Challenge(
-                        challenge.id,
-                        challenge.name,
-                        challenge.description,
-                        challenge.points,
-                        challenge.image,
-                        challenge.status,
-                        challenge.type,
-                        challenge.completed,
-                    ),
-            );
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new CannotProcessEntityError("Challenge", error.message);
-            }
-            throw new CannotProcessEntityError("Challenge", "Unknown error");
-        }
+        const request = new GetAllChallengesRequest();
+        const response = await request.send();
+        return response.getChallenges();
     }
 
     static async create(request: CreateChallengeRequest): Promise<Challenge> {
