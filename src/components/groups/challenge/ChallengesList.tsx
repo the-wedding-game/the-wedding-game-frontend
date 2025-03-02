@@ -1,5 +1,5 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
-import ChallengeCard, { ChallengeCardSkeleton } from "@/components/cards/ChallengeCard";
+import ChallengeCard, { ChallengeCardSkeleton } from "@/components/groups/challenge/challenge-card/ChallengeCard";
 
 type Props = {
     challenges: Challenge[];
