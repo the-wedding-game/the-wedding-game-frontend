@@ -17,6 +17,8 @@ import ChallengeCompletedBadge from "@/components/badges/ChallengeCompletedBadge
 import ChallengeSubmissionGroup, {
     ChallengeSubmissionGroupSkeleton,
 } from "@/components/groups/challenge/challenge-page/ChallengeSubmissionGroup";
+import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
+import AnimationFade from "@/components/framer-motion/AnimationFade";
 
 export default function Challenge() {
     useUser();
@@ -25,39 +27,43 @@ export default function Challenge() {
     const { challenge, loading } = useChallenge(Number(id));
 
     return (
-        <>
+        <AnimationWrapper>
             {challenge && (
-                <div className={`flex flex-col w-full space-y-5`}>
-                    <ChallengePageHeader challenge={challenge} />
+                <AnimationFade key={"challenges"}>
+                    <div className={`flex flex-col w-full space-y-5`}>
+                        <ChallengePageHeader challenge={challenge} />
 
-                    <div className={`flex flex-row space-x-5`}>
-                        <ChallengePageImage challenge={challenge} />
+                        <div className={`flex flex-row space-x-5`}>
+                            <ChallengePageImage challenge={challenge} />
 
-                        <div className={`flex flex-col w-96 justify-between`}>
-                            <ChallengePageDescription description={challenge.description} />
+                            <div className={`flex flex-col w-96 justify-between`}>
+                                <ChallengePageDescription description={challenge.description} />
 
-                            {challenge.completed && <ChallengeCompletedBadge />}
+                                {challenge.completed && <ChallengeCompletedBadge />}
 
-                            {!challenge.completed && <ChallengeSubmissionGroup challenge={challenge} />}
+                                {!challenge.completed && <ChallengeSubmissionGroup challenge={challenge} />}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </AnimationFade>
             )}
 
             {loading && (
-                <div className={`flex flex-col w-full space-y-5`}>
-                    <ChallengePageHeaderSkeleton />
+                <AnimationFade key={"loader"}>
+                    <div className={`flex flex-col w-full space-y-5`}>
+                        <ChallengePageHeaderSkeleton />
 
-                    <div className={`flex flex-row space-x-5`}>
-                        <ChallengePageImageSkeleton />
+                        <div className={`flex flex-row space-x-5`}>
+                            <ChallengePageImageSkeleton />
 
-                        <div className={`flex flex-col w-96 justify-between`}>
-                            <ChallengePageDescriptionSkeleton />
-                            <ChallengeSubmissionGroupSkeleton />
+                            <div className={`flex flex-col w-96 justify-between`}>
+                                <ChallengePageDescriptionSkeleton />
+                                <ChallengeSubmissionGroupSkeleton />
+                            </div>
                         </div>
                     </div>
-                </div>
+                </AnimationFade>
             )}
-        </>
+        </AnimationWrapper>
     );
 }

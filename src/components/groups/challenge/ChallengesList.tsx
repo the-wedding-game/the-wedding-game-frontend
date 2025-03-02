@@ -1,5 +1,6 @@
 import { Challenge } from "@/classes/Challenge/Challenge";
 import ChallengeCard, { ChallengeCardSkeleton } from "@/components/groups/challenge/challenge-card/ChallengeCard";
+import AnimationStagger from "@/components/framer-motion/AnimationStagger";
 
 type Props = {
     challenges: Challenge[];
@@ -11,7 +12,9 @@ export default function ChallengesList(props: Props) {
             {props.challenges.length !== 0 && (
                 <div className={`grid grid-cols-3 gap-8 justify-start`}>
                     {props.challenges.map((challenge, index) => (
-                        <ChallengeCard key={index} challenge={challenge} />
+                        <AnimationStagger key={index} index={index} length={props.challenges.length}>
+                            <ChallengeCard challenge={challenge} />
+                        </AnimationStagger>
                     ))}
                 </div>
             )}
