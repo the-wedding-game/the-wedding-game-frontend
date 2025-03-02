@@ -20,6 +20,7 @@ export default function AnimationStagger(props: Props) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3, delay: delay }}
+            className={`flex`}
         >
             {props.children}
         </motion.div>
