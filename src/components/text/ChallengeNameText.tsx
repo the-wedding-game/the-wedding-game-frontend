@@ -1,4 +1,4 @@
-import { Text } from "@mantine/core";
+import { Skeleton, Text } from "@mantine/core";
 
 type Props = {
     name: string;
@@ -6,8 +6,17 @@ type Props = {
 
 export default function ChallengeNameText(props: Props) {
     return (
-        <Text fw={500} lineClamp={3}>
+        <Text fw={500} lineClamp={3} {...dimensions}>
             {props.name}
         </Text>
     );
 }
+
+export function ChallengeNameTextSkeleton() {
+    return <Skeleton radius={"xl"} {...dimensions} />;
+}
+
+const dimensions = {
+    w: 250,
+    h: 20,
+};

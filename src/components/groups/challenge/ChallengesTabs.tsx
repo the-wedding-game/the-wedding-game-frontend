@@ -1,7 +1,7 @@
 import { Tabs } from "@mantine/core";
 import { Challenge } from "@/classes/Challenge/Challenge";
 import ChallengesTab, { ChallengesTabSkeleton } from "@/components/groups/challenge/ChallengesTab";
-import ChallengesPanel from "@/components/groups/challenge/ChallengesPanel";
+import ChallengesPanel, { ChallengesPanelSkeleton } from "@/components/groups/challenge/ChallengesPanel";
 
 type Props = {
     challenges: Challenge[];
@@ -31,6 +31,9 @@ export function ChallengesTabsSkeleton() {
                 <ChallengesTabSkeleton name={"To do"} color={"blue"} />
                 <ChallengesTabSkeleton name={"Completed"} color={"green"} />
             </Tabs.List>
+
+            <ChallengesPanelSkeleton name={"To do"} />
+            <ChallengesPanelSkeleton name={"Completed"} />
         </Tabs>
     );
 }
