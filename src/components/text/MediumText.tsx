@@ -1,13 +1,17 @@
 import { Skeleton, Text } from "@mantine/core";
+import { ReactNode } from "react";
 
 type Props = {
-    name: string;
+    children: ReactNode;
+    weight?: number;
 };
 
 export default function MediumText(props: Props) {
+    const fw = props.weight ? props.weight : 400;
+
     return (
-        <Text fw={500} lineClamp={3}>
-            {props.name}
+        <Text fw={fw} lineClamp={3}>
+            {props.children}
         </Text>
     );
 }
