@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
-import {useUser} from "@/classes/User/UserHook";
-import {Title} from "@mantine/core";
+import { useUser } from "@/classes/User/UserHook";
+import WelcomeText, { WelcomeTextSkeleton } from "@/components/text/WelcomeText";
 
 export default function WelcomeBar() {
-    const user = useUser();
-    
+    const { user, loading } = useUser();
+
     return (
         <>
-            {user && (
-               <div>
-                   <Title order={2} className={`text-gray-700`}>Welcome, {user.username} 🤩</Title>
-               </div>
-            )}
+            {user && <WelcomeText username={user.username} />}
+
+            {loading && <WelcomeTextSkeleton />}
         </>
-    )
+    );
 }
