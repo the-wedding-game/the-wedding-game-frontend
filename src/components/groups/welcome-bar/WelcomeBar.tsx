@@ -1,16 +1,15 @@
 "use client";
 
 import { useUser } from "@/classes/User/UserHook";
-import WelcomeText, { WelcomeTextSkeleton } from "@/components/text/WelcomeText";
+import TitleText, { TitleTextSkeleton } from "@/components/text/TitleText";
 
 export default function WelcomeBar() {
     const { user, loading } = useUser();
 
     return (
         <>
-            {user && <WelcomeText username={user.username} />}
-
-            {loading && <WelcomeTextSkeleton />}
+            {user && <TitleText>Welcome {user.username} 🤩</TitleText>}
+            {loading && <TitleTextSkeleton w={"450"} />}
         </>
     );
 }

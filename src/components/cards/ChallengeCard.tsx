@@ -15,7 +15,7 @@ export default function ChallengeCard(props: Props) {
     const challenge = props.challenge;
 
     return (
-        <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96`}>
+        <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96 space-y-5`}>
             <ChallengeCardImage challenge={challenge} />
             <ChallengeCardContent challenge={challenge} />
         </Card>
@@ -24,7 +24,7 @@ export default function ChallengeCard(props: Props) {
 
 export function ChallengeCardSkeleton() {
     return (
-        <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96`}>
+        <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96 space-y-5`}>
             <ChallengeCardImageSkeleton />
             <ChallengeCardContentSkeleton />
         </Card>

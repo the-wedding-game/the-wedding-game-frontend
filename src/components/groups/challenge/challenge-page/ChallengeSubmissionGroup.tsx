@@ -4,12 +4,15 @@ import { ANSWER_VERIFICATION_MESSAGES } from "@/constants/challenges";
 import { Answer } from "@/classes/Answer/Answer";
 import { useModal } from "@/components/modals/Modal";
 import SubmitAnswerSubmission from "@/components/forms/submit-answer/SubmitAnswerSubmission";
-import SubmitPhotoSubmission from "@/components/forms/submit-photo/SubmitPhotoSubmission";
+import SubmitPhotoSubmission, {
+    SubmitPhotoSubmissionSkeleton,
+} from "@/components/forms/submit-photo/SubmitPhotoSubmission";
 
 type Props = {
     challenge: Challenge;
 };
 
+// TODO: simplify this component logic
 export default function ChallengeSubmissionGroup(props: Props) {
     const { openModal } = useModal();
 
@@ -37,9 +40,13 @@ export default function ChallengeSubmissionGroup(props: Props) {
     }
 
     return (
-        <div className={`flex flex-col space-y-5`}>
+        <>
             {props.challenge.type === "ANSWER_QUESTION" && <SubmitAnswerSubmission submitAnswer={submitAnswer} />}
             {props.challenge.type === "UPLOAD_PHOTO" && <SubmitPhotoSubmission submitAnswer={submitAnswer} />}
-        </div>
+        </>
     );
+}
+
+export function ChallengeSubmissionGroupSkeleton() {
+    return <SubmitPhotoSubmissionSkeleton />;
 }

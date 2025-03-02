@@ -1,23 +1,19 @@
-import { Skeleton, Text } from "@mantine/core";
+import SmallText, { SmallTextSkeleton } from "@/components/text/SmallText";
 
 type Props = {
     description: string;
 };
 
 export default function ChallengeCardDescription(props: Props) {
-    return (
-        <Text size="sm" c="dimmed">
-            {props.description}
-        </Text>
-    );
+    return <SmallText>{props.description}</SmallText>;
 }
 
 export function ChallengeCardDescriptionSkeleton() {
     return (
-        <div className={`space-y-2`}>
-            <Skeleton radius={"xl"} w={"100%"} h={10} />
-            <Skeleton radius={"xl"} w={"100%"} h={10} />
-            <Skeleton radius={"xl"} w={"50%"} h={10} />
-        </div>
+        <>
+            <SmallTextSkeleton w={"100%"} />
+            <SmallTextSkeleton w={"100%"} />
+            <SmallTextSkeleton w={"50%"} />
+        </>
     );
 }

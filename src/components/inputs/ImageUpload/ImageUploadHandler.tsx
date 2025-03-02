@@ -1,5 +1,5 @@
 import { FileInput } from "@mantine/core";
-import ImageUploadButton from "@/components/inputs/ImageUpload/ImageUploadButton";
+import ImageUploadButton, { ImageUploadButtonSkeleton } from "@/components/inputs/ImageUpload/ImageUploadButton";
 import React from "react";
 import { Image as ImageManager } from "@/classes/Image/Image";
 import { useModal } from "@/components/modals/Modal";
@@ -48,4 +48,8 @@ export default function ImageUploadHandler(props: Props) {
             <ImageUploadButton onClick={handleUploadButtonClick} />
         </div>
     );
+}
+
+export function ImageUploadHandlerSkeleton() {
+    return <ImageUploadButtonSkeleton />;
 }

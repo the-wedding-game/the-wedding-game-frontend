@@ -1,4 +1,4 @@
-import { Text } from "@mantine/core";
+import { Skeleton, Text } from "@mantine/core";
 import React from "react";
 
 type Props = {
@@ -16,4 +16,8 @@ export default function ImageUploadLabel(props: Props) {
             </Text>
         </div>
     );
+}
+
+export function ImageUploadLabelSkeleton() {
+    return <Skeleton radius={"xl"} w={100} h={15} />;
 }
