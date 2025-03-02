@@ -1,4 +1,4 @@
-import { CardSection, Image } from "@mantine/core";
+import { CardSection, Image, Skeleton } from "@mantine/core";
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
@@ -14,8 +14,21 @@ export default function ChallengeCardImage(props: Props) {
                 radius="md"
                 height={200}
                 width={200}
-                className={`w-96 h-96`}
+                {...dimensions}
             />
         </CardSection>
     );
 }
+
+export function ChallengeCardImageSkeleton() {
+    return (
+        <CardSection>
+            <Skeleton {...dimensions} radius="md" />
+        </CardSection>
+    );
+}
+
+const dimensions = {
+    w: 384,
+    h: 384,
+};

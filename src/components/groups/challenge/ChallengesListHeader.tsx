@@ -1,14 +1,11 @@
-import { Text, Title } from "@mantine/core";
+import HeadingText from "@/components/text/HeadingText";
+import MediumText from "@/components/text/MediumText";
 
 export default function ChallengesListHeader() {
     return (
         <div>
-            <Title order={1} className={`text-gray-700`}>
-                Challenges
-            </Title>
-            <Text size="md" className={`text-gray-500`}>
-                Complete these challenges to earn points!
-            </Text>
+            <HeadingText>Challenges</HeadingText>
+            <MediumText>Complete these challenges to earn points!</MediumText>
         </div>
     );
 }

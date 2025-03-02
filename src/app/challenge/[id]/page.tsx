@@ -1,41 +1,69 @@
 "use client";
 
-import { Loader } from "@mantine/core";
 import { useUser } from "@/classes/User/UserHook";
 import { useChallenge } from "@/classes/Challenge/ChallengeHook";
 import { useParams } from "next/navigation";
 import React from "react";
-import ChallengePageHeader from "@/components/groups/challenge/challenge-page/ChallengePageHeader";
-import ChallengePageImage from "@/components/groups/challenge/challenge-page/ChallengePageImage";
-import ChallengePageDescription from "@/components/groups/challenge/challenge-page/ChallengeCardDescription";
+import ChallengePageHeader, {
+    ChallengePageHeaderSkeleton,
+} from "@/components/groups/challenge/challenge-page/ChallengePageHeader";
+import ChallengePageImage, {
+    ChallengePageImageSkeleton,
+} from "@/components/groups/challenge/challenge-page/ChallengePageImage";
+import ChallengePageDescription, {
+    ChallengePageDescriptionSkeleton,
+} from "@/components/groups/challenge/challenge-page/ChallengeCardDescription";
 import ChallengeCompletedBadge from "@/components/badges/ChallengeCompletedBadge";
-import ChallengeSubmissionGroup from "@/components/groups/challenge/challenge-page/ChallengeSubmissionGroup";
+import ChallengeSubmissionGroup, {
+    ChallengeSubmissionGroupSkeleton,
+} from "@/components/groups/challenge/challenge-page/ChallengeSubmissionGroup";
+import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
+import AnimationFade from "@/components/framer-motion/AnimationFade";
 
 export default function Challenge() {
     useUser();
 
     const id = useParams<{ id: string }>().id;
-    const challenge = useChallenge(Number(id));
-
-    if (!challenge) {
-        return <Loader />;
-    }
+    const { challenge, loading } = useChallenge(Number(id));
 
     return (
-        <div className={`flex flex-col w-full space-y-5`}>
-            <ChallengePageHeader challenge={challenge} />
+        <AnimationWrapper>
+            {challenge && (
+                <AnimationFade key={"challenges"}>
+                    <div className={`flex flex-col w-full space-y-5`}>
+                        <ChallengePageHeader challenge={challenge} />
 
-            <div className={`flex flex-row space-x-5`}>
-                <ChallengePageImage challenge={challenge} />
+                        <div className={`flex flex-row space-x-5`}>
+                            <ChallengePageImage challenge={challenge} />
 
-                <div className={`flex flex-col w-96 justify-between`}>
-                    <ChallengePageDescription description={challenge.description} />
+                            <div className={`flex flex-col w-96 justify-between`}>
+                                <ChallengePageDescription description={challenge.description} />
 
-                    {challenge.completed && <ChallengeCompletedBadge />}
+                                {challenge.completed && <ChallengeCompletedBadge />}
 
-                    {!challenge.completed && <ChallengeSubmissionGroup challenge={challenge} />}
-                </div>
-            </div>
-        </div>
+                                {!challenge.completed && <ChallengeSubmissionGroup challenge={challenge} />}
+                            </div>
+                        </div>
+                    </div>
+                </AnimationFade>
+            )}
+
+            {loading && (
+                <AnimationFade key={"loader"}>
+                    <div className={`flex flex-col w-full space-y-5`}>
+                        <ChallengePageHeaderSkeleton />
+
+                        <div className={`flex flex-row space-x-5`}>
+                            <ChallengePageImageSkeleton />
+
+                            <div className={`flex flex-col w-96 justify-between`}>
+                                <ChallengePageDescriptionSkeleton />
+                                <ChallengeSubmissionGroupSkeleton />
+                            </div>
+                        </div>
+                    </div>
+                </AnimationFade>
+            )}
+        </AnimationWrapper>
     );
 }

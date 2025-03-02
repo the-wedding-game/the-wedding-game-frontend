@@ -2,8 +2,8 @@
 
 import { Loader } from "@mantine/core";
 import React, { useState } from "react";
-import ImageUploadLabel from "@/components/inputs/ImageUpload/ImageUploadLabel";
-import ImageUploadHandler from "@/components/inputs/ImageUpload/ImageUploadHandler";
+import ImageUploadLabel, { ImageUploadLabelSkeleton } from "@/components/inputs/ImageUpload/ImageUploadLabel";
+import ImageUploadHandler, { ImageUploadHandlerSkeleton } from "@/components/inputs/ImageUpload/ImageUploadHandler";
 import ImagePreview from "@/components/inputs/ImageUpload/ImagePreview";
 
 type Props = {
@@ -16,7 +16,6 @@ type Props = {
 
 export default function ImageUpload(props: Props) {
     const disableRemove = props.disableRemove || false;
-
     const [loading, setLoading] = useState(false);
 
     return (
@@ -34,6 +33,15 @@ export default function ImageUpload(props: Props) {
                     disableRemove={disableRemove}
                 />
             )}
+        </div>
+    );
+}
+
+export function ImageUploadSkeleton() {
+    return (
+        <div className={`flex flex-col space-y-2`}>
+            <ImageUploadLabelSkeleton />
+            <ImageUploadHandlerSkeleton />
         </div>
     );
 }

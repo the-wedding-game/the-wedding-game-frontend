@@ -1,18 +1,26 @@
-"use client"
+"use client";
 
-import {useUser} from "@/classes/User/UserHook";
-import {Title} from "@mantine/core";
+import { useUser } from "@/classes/User/UserHook";
+import TitleText, { TitleTextSkeleton } from "@/components/text/TitleText";
+import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
+import AnimationFade from "@/components/framer-motion/AnimationFade";
 
 export default function WelcomeBar() {
-    const user = useUser();
-    
+    const { user, loading } = useUser();
+
     return (
-        <>
+        <AnimationWrapper>
             {user && (
-               <div>
-                   <Title order={2} className={`text-gray-700`}>Welcome, {user.username} 🤩</Title>
-               </div>
+                <AnimationFade key={"welcome"}>
+                    <TitleText>Welcome {user.username} 🤩</TitleText>
+                </AnimationFade>
             )}
-        </>
-    )
+
+            {loading && (
+                <AnimationFade key={"loader"}>
+                    <TitleTextSkeleton w={"450"} />
+                </AnimationFade>
+            )}
+        </AnimationWrapper>
+    );
 }

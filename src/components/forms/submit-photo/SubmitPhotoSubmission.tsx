@@ -1,6 +1,6 @@
 import SubmitButton from "@/components/buttons/SubmitButton";
 import React, { useState } from "react";
-import ImageUpload from "@/components/inputs/ImageUpload/ImageUpload";
+import ImageUpload, { ImageUploadSkeleton } from "@/components/inputs/ImageUpload/ImageUpload";
 import IncorrectAnswerBadge from "@/components/badges/IncorrectAnswerBadge";
 import CorrectAnswerBadge from "@/components/badges/CorrectAnswerBadge";
 
@@ -38,7 +38,7 @@ export default function SubmitPhotoSubmission(props: Props) {
             {answerChanged && !answerCorrect && <IncorrectAnswerBadge />}
             {answerChanged && answerCorrect && <CorrectAnswerBadge />}
 
-            {!answerCorrect && (
+            {!answerCorrect && answer && (
                 <SubmitButton
                     onClick={submitAnswer}
                     loading={loading}
@@ -46,6 +46,14 @@ export default function SubmitPhotoSubmission(props: Props) {
                     disabled={!answer}
                 />
             )}
+        </div>
+    );
+}
+
+export function SubmitPhotoSubmissionSkeleton() {
+    return (
+        <div className={`flex flex-col w-32 items-start space-y-5`}>
+            <ImageUploadSkeleton />
         </div>
     );
 }

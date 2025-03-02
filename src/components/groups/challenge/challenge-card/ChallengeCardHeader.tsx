@@ -1,6 +1,5 @@
-import { Group } from "@mantine/core";
-import ChallengeNameText from "@/components/text/ChallengeNameText";
-import PointsBadge from "@/components/badges/PointsBadge";
+import MediumText, { MediumTextSkeleton } from "@/components/text/MediumText";
+import PointsBadge, { PointsBadgeSkeleton } from "@/components/badges/PointsBadge";
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
@@ -9,9 +8,18 @@ type Props = {
 
 export default function ChallengeCardHeader(props: Props) {
     return (
-        <Group justify="space-between" mt="md" mb="xs">
-            <ChallengeNameText name={props.challenge.name} />
+        <div className={`flex flex-row justify-between`}>
+            <MediumText weight={600}>{props.challenge.name}</MediumText>
             <PointsBadge points={props.challenge.points} />
-        </Group>
+        </div>
+    );
+}
+
+export function ChallengeCardHeaderSkeleton() {
+    return (
+        <div className={`flex flex-row justify-between`}>
+            <MediumTextSkeleton w={"50%"} />
+            <PointsBadgeSkeleton />
+        </div>
     );
 }

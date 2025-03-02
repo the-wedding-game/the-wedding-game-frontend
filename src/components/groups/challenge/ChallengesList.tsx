@@ -1,27 +1,37 @@
-import { Loader } from "@mantine/core";
 import { Challenge } from "@/classes/Challenge/Challenge";
-import ChallengeCard from "@/components/cards/ChallengeCard";
+import ChallengeCard, { ChallengeCardSkeleton } from "@/components/groups/challenge/challenge-card/ChallengeCard";
+import AnimationStagger from "@/components/framer-motion/AnimationStagger";
 
 type Props = {
-    challenges: Challenge[] | undefined;
+    challenges: Challenge[];
 };
 
 export default function ChallengesList(props: Props) {
     return (
-        <div>
-            {props.challenges && props.challenges.length !== 0 && (
+        <>
+            {props.challenges.length !== 0 && (
                 <div className={`grid grid-cols-3 gap-8 justify-start`}>
                     {props.challenges.map((challenge, index) => (
-                        <ChallengeCard key={index} challenge={challenge} />
+                        <AnimationStagger key={index} index={index} length={props.challenges.length}>
+                            <ChallengeCard challenge={challenge} />
+                        </AnimationStagger>
                     ))}
                 </div>
             )}
 
-            {!props.challenges && <Loader />}
+            {props.challenges.length == 0 && <p className={`text-gray-500`}>No challenges found.</p>}
+        </>
+    );
+}
 
-            {props.challenges && props.challenges.length == 0 && (
-                <p className={`text-gray-500`}>No challenges found.</p>
-            )}
+export function ChallengesListSkeleton() {
+    return (
+        <div className={`grid grid-cols-3 gap-8 justify-start`}>
+            <ChallengeCardSkeleton />
+            <ChallengeCardSkeleton />
+            <ChallengeCardSkeleton />
+            <ChallengeCardSkeleton />
+            <ChallengeCardSkeleton />
         </div>
     );
 }
