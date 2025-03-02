@@ -17,6 +17,6 @@ export function PointsBadgeSkeleton() {
 }
 
 const dimensions = {
-    w: 35,
+    w: 40,
     h: 20,
 };
