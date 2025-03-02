@@ -9,7 +9,7 @@ type Props = {
 export default function ChallengeCardHeader(props: Props) {
     return (
         <div className={`flex flex-row justify-between`}>
-            <MediumText>{props.challenge.name}</MediumText>
+            <MediumText weight={600}>{props.challenge.name}</MediumText>
             <PointsBadge points={props.challenge.points} />
         </div>
     );
