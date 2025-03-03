@@ -28,7 +28,7 @@ export default function ChallengeCardContent(props: Props) {
 
             {!props.challenge.completed && (
                 <div className={`sm:hidden`}>
-                    <ViewChallengeButton challengeId={props.challenge.id} />
+                    <ViewChallengeButton />
                 </div>
             )}
 

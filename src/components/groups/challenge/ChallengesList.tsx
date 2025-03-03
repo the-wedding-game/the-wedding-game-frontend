@@ -26,7 +26,7 @@ export default function ChallengesList(props: Props) {
 
 export function ChallengesListSkeleton() {
     return (
-        <div className={`grid grid-cols-3 sm:grid-cols-1 gap-8 justify-start`}>
+        <div className={`grid grid-cols-3 sm:grid-cols-1 gap-8 sm:gap-4 justify-start`}>
             <ChallengeCardSkeleton />
             <ChallengeCardSkeleton />
             <ChallengeCardSkeleton />

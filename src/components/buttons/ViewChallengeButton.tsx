@@ -1,16 +1,10 @@
 import { Button, Skeleton } from "@mantine/core";
 
-type Props = {
-    challengeId: number;
-};
-
-export default function ViewChallengeButton(props: Props) {
+export default function ViewChallengeButton() {
     return (
-        <a href={`/challenge/${props.challengeId}`}>
-            <Button color="blue" fullWidth radius="sm" {...dimensions}>
-                View challenge
-            </Button>
-        </a>
+        <Button color="blue" fullWidth radius="sm" {...dimensions}>
+            View challenge
+        </Button>
     );
 }
 

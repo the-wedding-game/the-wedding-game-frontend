@@ -15,16 +15,16 @@ export default function ChallengeCard(props: Props) {
     const challenge = props.challenge;
 
     return (
-        <a href={`/challenge/${props.challenge.id}`}>
-            <Card shadow="sm" padding="0" radius="md" withBorder className={`max-w-96 w-full`}>
+        <Card shadow="sm" padding="0" radius="md" withBorder className={`max-w-96 w-full`}>
+            <a href={`/challenge/${props.challenge.id}`}>
                 <div className={`flex flex-col sm:flex-row sm:space-x-2`}>
                     <div className={`sm:w-1/2 h-full`}>
                         <ChallengeCardImage challenge={challenge} />
                     </div>
                     <ChallengeCardContent challenge={challenge} />
                 </div>
-            </Card>
-        </a>
+            </a>
+        </Card>
     );
 }
 
