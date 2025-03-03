@@ -6,7 +6,9 @@ export default function Header() {
         <div className={`flex flex-row justify-center items-center bg-slate-800 p-5 border-b-2 border-b-gray-500`}>
             <div className={`flex w-[1200px] justify-between items-center`}>
                 <HeaderTagline />
-                <HeaderLinks />
+                <div className={`sm:hidden`}>
+                    <HeaderLinks />
+                </div>
             </div>
         </div>
     );
