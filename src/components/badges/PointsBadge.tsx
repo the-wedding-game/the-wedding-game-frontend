@@ -5,11 +5,7 @@ type Props = {
 };
 
 export default function PointsBadge(props: Props) {
-    return (
-        <Badge color="pink" {...dimensions}>
-            {props.points}
-        </Badge>
-    );
+    return <Badge color="pink">{props.points}</Badge>;
 }
 
 export function PointsBadgeSkeleton() {

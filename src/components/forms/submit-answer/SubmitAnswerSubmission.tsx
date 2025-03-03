@@ -43,8 +43,8 @@ export default function SubmitAnswerSubmission(props: Props) {
                 disabled={answerCorrect}
             />
 
-            {answerChanged && !answerCorrect && <IncorrectAnswerBadge />}
-            {answerChanged && answerCorrect && <CorrectAnswerBadge />}
+            {answerChanged && !loading && !answerCorrect && <IncorrectAnswerBadge />}
+            {answerChanged && !loading && answerCorrect && <CorrectAnswerBadge />}
 
             {!answerCorrect && (
                 <SubmitButton

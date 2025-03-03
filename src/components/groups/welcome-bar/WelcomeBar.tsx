@@ -18,7 +18,7 @@ export default function WelcomeBar() {
 
             {loading && (
                 <AnimationFade key={"loader"}>
-                    <TitleTextSkeleton w={"450"} />
+                    <TitleTextSkeleton w={"300"} />
                 </AnimationFade>
             )}
         </AnimationWrapper>

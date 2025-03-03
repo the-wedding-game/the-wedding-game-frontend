@@ -7,7 +7,7 @@ export default function Footer() {
             className={`flex flex-row justify-center items-center bg-slate-200 p-5 border-t-2 border-t-gray-500
                          mt-20 pt-10 pb-5`}
         >
-            <div className={`flex w-[1200px] justify-between items-center`}>
+            <div className={`flex w-[1200px] justify-between items-center flex-wrap space-y-5`}>
                 <FooterTagline />
                 <FooterLinks />
             </div>

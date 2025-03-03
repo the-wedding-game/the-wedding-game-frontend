@@ -33,10 +33,10 @@ export default function Challenge() {
                     <div className={`flex flex-col w-full space-y-5`}>
                         <ChallengePageHeader challenge={challenge} />
 
-                        <div className={`flex flex-row space-x-5`}>
+                        <div className={`flex flex-row sm:flex-col space-x-5 sm:space-y-2 sm:space-x-0`}>
                             <ChallengePageImage challenge={challenge} />
 
-                            <div className={`flex flex-col w-96 justify-between`}>
+                            <div className={`flex flex-col w-96 justify-between p-2 sm:space-y-5`}>
                                 <ChallengePageDescription description={challenge.description} />
 
                                 {challenge.completed && <ChallengeCompletedBadge />}
@@ -53,10 +53,10 @@ export default function Challenge() {
                     <div className={`flex flex-col w-full space-y-5`}>
                         <ChallengePageHeaderSkeleton />
 
-                        <div className={`flex flex-row space-x-5`}>
+                        <div className={`flex flex-row sm:flex-col space-x-5 sm:space-y-2 sm:space-x-0`}>
                             <ChallengePageImageSkeleton />
 
-                            <div className={`flex flex-col w-96 justify-between`}>
+                            <div className={`flex flex-col w-96 justify-between p-2 sm:space-y-5`}>
                                 <ChallengePageDescriptionSkeleton />
                                 <ChallengeSubmissionGroupSkeleton />
                             </div>

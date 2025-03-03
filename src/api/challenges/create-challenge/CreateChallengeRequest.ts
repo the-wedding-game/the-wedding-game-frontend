@@ -4,8 +4,8 @@ import {
     CreateChallengeResponseBody,
 } from "@/api/challenges/create-challenge/CreateChallengeResponse";
 
-const ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/challenges`;
-const METHOD = "GET";
+const ENDPOINT = `challenges`;
+const METHOD = "POST";
 
 export type CreateChallengeRequestBody = {
     name: string;

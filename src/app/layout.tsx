@@ -32,7 +32,7 @@ export default function RootLayout(props: Props) {
                             <Header />
 
                             <div className={`flex w-full justify-center items-start`}>
-                                <div className={`w-[1200px] flex flex-row mt-10 items-start`}>
+                                <div className={`max-w-[1200px] flex flex-row mt-10 items-start w-full sm:px-2`}>
                                     <ModalProvider>{props.children}</ModalProvider>
                                 </div>
                             </div>

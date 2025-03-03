@@ -22,7 +22,7 @@ export default function ChallengePageHeader(props: Props) {
 export function ChallengePageHeaderSkeleton() {
     return (
         <div className={`flex flex-col space-y-2`}>
-            <HeadingTextSkeleton w={"450"} />
+            <HeadingTextSkeleton w={"300"} />
 
             <div className={`flex flex-row items-center space-x-2`}>
                 <BigPointsBadgeSkeleton />

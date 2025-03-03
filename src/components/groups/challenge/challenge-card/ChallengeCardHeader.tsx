@@ -8,7 +8,7 @@ type Props = {
 
 export default function ChallengeCardHeader(props: Props) {
     return (
-        <div className={`flex flex-row justify-between`}>
+        <div className={`flex flex-row justify-between sm:flex-col sm:space-y-2`}>
             <MediumText weight={600}>{props.challenge.name}</MediumText>
             <PointsBadge points={props.challenge.points} />
         </div>
@@ -17,7 +17,7 @@ export default function ChallengeCardHeader(props: Props) {
 
 export function ChallengeCardHeaderSkeleton() {
     return (
-        <div className={`flex flex-row justify-between`}>
+        <div className={`flex flex-row justify-between sm:flex-col sm:space-y-2`}>
             <MediumTextSkeleton w={"50%"} />
             <PointsBadgeSkeleton />
         </div>
