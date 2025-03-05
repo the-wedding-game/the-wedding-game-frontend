@@ -1,13 +1,22 @@
 import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { Challenge } from "@/classes/Challenge/Challenge";
+import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 
-export type CreateChallengeResponseBody = Challenge;
+export type CreateChallengeResponseBody = {
+    id: number;
+    name: string;
+    description: string;
+    points: number;
+    image: string;
+    status: string;
+    type: ChallengeType;
+};
 
 export class CreateChallengeResponse {
     private readonly challenge: Challenge;
 
     public constructor(data: CreateChallengeResponseBody) {
-        this.challenge = data;
+        this.challenge = { ...data, completed: false };
         this.check();
     }
 
