@@ -6,8 +6,16 @@ import SuccessModal from "@/components/modals/SuccessModal";
 
 type ModalType = "success" | "error" | "info" | "warning";
 
+type OpenModalParams = {
+    title: string;
+    message: string;
+    type: ModalType;
+    closeAction?: () => void;
+    additionalDetails?: string;
+};
+
 type ModalContextType = {
-    openModal: (title: string, message: string, modalType: ModalType, onCloseAction?: () => void) => void;
+    openModal: (params: OpenModalParams) => void;
     closeModal: () => void;
 };
 
@@ -25,13 +33,18 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const [modalContent, setModalContent] = useState<{ title: string; message: string } | null>(null);
     const [modalType, setModalType] = useState<ModalType>("info");
     const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
+    const [additionalDetails, setAdditionalDetails] = useState<string | undefined>(undefined);
 
-    const openModal = (title: string, message: string, type: ModalType, closeAction?: () => void) => {
-        setModalContent({ title, message });
-        setModalType(type);
+    const openModal = (params: OpenModalParams) => {
+        setModalContent({ title: params.title, message: params.message });
+        setModalType(params.type);
 
-        if (closeAction) {
-            setOnCloseAction(() => closeAction);
+        if (params.closeAction) {
+            setOnCloseAction(() => params.closeAction!);
+        }
+
+        if (params.additionalDetails) {
+            setAdditionalDetails(params.additionalDetails);
         }
     };
 
@@ -41,6 +54,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
 
         onCloseAction();
         setOnCloseAction(() => () => {});
+        setAdditionalDetails(undefined);
     };
 
     return (
@@ -52,6 +66,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
                 message={modalContent?.message || "An unknown error occurred"}
                 opened={modalType === "error"}
                 onClose={closeModal}
+                additionalDetails={additionalDetails}
             />
 
             <SuccessModal

@@ -7,6 +7,7 @@ type Props = {
     message: string;
     opened: boolean;
     onClose: () => void;
+    additionalDetails?: string;
 };
 
 export default function ErrorModal(props: Props) {
@@ -19,6 +20,7 @@ export default function ErrorModal(props: Props) {
             buttonText={"Ok :("}
             buttonColor={"red"}
             headerIcon={<ErrorIcon />}
+            additionalDetails={props.additionalDetails}
         />
     );
 }
