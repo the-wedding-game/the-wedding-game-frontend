@@ -29,8 +29,12 @@ export default function ImageUploadHandler(props: Props) {
             const url = await image.upload();
             props.setImage(url);
         } catch (error) {
-            if (error instanceof Error) openModal("Oh no! ☹️", error.message, "error");
-            else openModal("Oh no! ☹️", "There was an error uploading the image. Please try again later.", "error");
+            openModal({
+                title: "Oh no! ☹️",
+                message: "There was an error uploading the image. Please try again later.",
+                type: "error",
+                additionalDetails: error instanceof Error ? error.stack : "",
+            });
         } finally {
             props.setLoading(false);
         }

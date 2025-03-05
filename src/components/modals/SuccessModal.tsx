@@ -1,5 +1,6 @@
 import React from "react";
 import BaseModal from "@/components/modals/BaseModal";
+import { IconProgressCheck } from "@tabler/icons-react";
 
 type Props = {
     title: string;
@@ -16,6 +17,15 @@ export default function ErrorModal(props: Props) {
             opened={props.opened}
             onClose={props.onClose}
             buttonText={"OK :)"}
+            headerIcon={<SuccessIcon />}
         />
+    );
+}
+
+function SuccessIcon() {
+    return (
+        <div className={`flex p-2 bg-green-200 rounded-full`}>
+            <IconProgressCheck color={"green"} opacity={0.8} />
+        </div>
     );
 }

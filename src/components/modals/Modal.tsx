@@ -6,8 +6,16 @@ import SuccessModal from "@/components/modals/SuccessModal";
 
 type ModalType = "success" | "error" | "info" | "warning";
 
+type OpenModalParams = {
+    title: string;
+    message: string;
+    type: ModalType;
+    closeAction?: () => void;
+    additionalDetails?: string;
+};
+
 type ModalContextType = {
-    openModal: (title: string, message: string, modalType: ModalType, onCloseAction?: () => void) => void;
+    openModal: (params: OpenModalParams) => void;
     closeModal: () => void;
 };
 
@@ -24,49 +32,49 @@ export const useModal = () => {
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const [modalContent, setModalContent] = useState<{ title: string; message: string } | null>(null);
     const [modalType, setModalType] = useState<ModalType>("info");
-    const [modalOpened, setModalOpened] = useState<boolean>(false);
     const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
+    const [additionalDetails, setAdditionalDetails] = useState<string | undefined>(undefined);
 
-    const openModal = (title: string, message: string, type: ModalType, closeAction?: () => void) => {
-        setModalContent({ title, message });
-        setModalType(type);
+    const openModal = (params: OpenModalParams) => {
+        setModalContent({ title: params.title, message: params.message });
+        setModalType(params.type);
 
-        if (closeAction) {
-            setOnCloseAction(() => closeAction);
+        if (params.closeAction) {
+            setOnCloseAction(() => params.closeAction!);
         }
 
-        setModalOpened(true);
+        if (params.additionalDetails) {
+            setAdditionalDetails(params.additionalDetails);
+        }
     };
 
     const closeModal = () => {
-        setModalOpened(false);
         setModalContent(null);
         setModalType("info");
 
         onCloseAction();
         setOnCloseAction(() => () => {});
+        setAdditionalDetails(undefined);
     };
 
     return (
         <ModalContext.Provider value={{ openModal, closeModal }}>
             {children}
-            {modalContent && modalType === "error" && (
-                <ErrorModal
-                    title={modalContent.title}
-                    message={modalContent.message}
-                    opened={modalOpened}
-                    onClose={closeModal}
-                />
-            )}
 
-            {modalContent && modalType === "success" && (
-                <SuccessModal
-                    title={modalContent.title}
-                    message={modalContent.message}
-                    opened={modalOpened}
-                    onClose={closeModal}
-                />
-            )}
+            <ErrorModal
+                title={modalContent?.title || "Error"}
+                message={modalContent?.message || "An unknown error occurred"}
+                opened={modalType === "error"}
+                onClose={closeModal}
+                additionalDetails={additionalDetails}
+            />
+
+            <SuccessModal
+                title={modalContent?.title || "Success"}
+                message={modalContent?.message || "Task has been completed successfully"}
+                opened={modalType === "success"}
+                onClose={closeModal}
+            />
         </ModalContext.Provider>
     );
 };

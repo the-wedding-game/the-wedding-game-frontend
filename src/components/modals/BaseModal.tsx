@@ -1,5 +1,8 @@
-import { Button, Modal, Text, Title } from "@mantine/core";
-import React from "react";
+import { Button, MantineColor, Modal } from "@mantine/core";
+import React, { ReactNode } from "react";
+import MediumText from "@/components/text/MediumText";
+import LargeText from "@/components/text/LargeText";
+import TinyText from "@/components/text/TinyText";
 
 type Props = {
     title: string;
@@ -7,26 +10,39 @@ type Props = {
     opened: boolean;
     onClose: () => void;
     buttonText: string;
+    headerIcon?: ReactNode;
+    additionalDetails?: string;
+    buttonColor?: MantineColor;
 };
 
 export default function BaseModal(props: Props) {
-    return (
-        <Modal
-            opened={props.opened}
-            onClose={props.onClose}
-            withCloseButton={false}
-            transitionProps={{ transition: "fade", duration: 600, timingFunction: "linear" }}
-            centered={true}
-        >
-            <div className={`flex flex-col space-y-5 items-start`}>
-                <div className={`flex flex-col space-y-2 items-start`}>
-                    <Title order={3}>{props.title}</Title>
-                    <Text>{props.message}</Text>
-                </div>
+    const buttonColor = props.buttonColor || "blue";
 
-                <Button onClick={props.onClose} className={`w-1`}>
-                    {props.buttonText}
-                </Button>
+    return (
+        <Modal opened={props.opened} onClose={props.onClose} withCloseButton={false} centered={true} size={"auto"}>
+            <div className={`flex flex-row items-start space-x-5`}>
+                {props.headerIcon && <div>{props.headerIcon}</div>}
+
+                <div className={`flex flex-col items-start space-y-5 w-full`}>
+                    <div className={`flex flex-col items-start space-y-1`}>
+                        <LargeText weight={500}>{props.title}</LargeText>
+                        <MediumText weight={350}>{props.message}</MediumText>
+                        {props.additionalDetails && (
+                            <div className={`flex flex-col bg-gray-100 w-full p-2 rounded-sm`}>
+                                <TinyText color={"red"} weight={600}>
+                                    Debug Details
+                                </TinyText>
+                                <TinyText>{props.additionalDetails}</TinyText>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className={`flex flex-col w-full items-end`}>
+                        <Button variant={"outline"} color={buttonColor} onClick={props.onClose}>
+                            {props.buttonText}
+                        </Button>
+                    </div>
+                </div>
             </div>
         </Modal>
     );

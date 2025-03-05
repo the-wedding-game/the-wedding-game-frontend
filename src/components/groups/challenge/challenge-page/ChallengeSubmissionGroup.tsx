@@ -18,27 +18,40 @@ export default function ChallengeSubmissionGroup(props: Props) {
 
     async function submitAnswer(answer: string | null): Promise<boolean> {
         if (!answer) {
-            openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.NO_ANSWER[props.challenge.type], "error");
+            openModal({
+                title: "Oopsie! ☹️",
+                message: ANSWER_VERIFICATION_MESSAGES.NO_ANSWER[props.challenge.type],
+                type: "error",
+            });
             return false;
         }
 
         const answerObj = new Answer(Number(props.challenge.id), answer);
         try {
             if (await answerObj.verify()) {
-                openModal(
-                    "Congratulations!",
-                    ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type],
-                    "success",
-                    () => (window.location.href = "/"),
-                );
+                openModal({
+                    title: "Woo hoo!",
+                    message: ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type],
+                    type: "success",
+                    closeAction: () => (window.location.href = "/"),
+                });
                 return true;
             } else {
-                openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type], "error");
+                openModal({
+                    title: "Oopsie! ☹️",
+                    message: ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type],
+                    type: "error",
+                    additionalDetails: "fuck off nerd",
+                });
                 return false;
             }
         } catch (e) {
-            console.log(e);
-            openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.ERROR[props.challenge.type], "error");
+            openModal({
+                title: "Oopsie! ☹️",
+                message: ANSWER_VERIFICATION_MESSAGES.ERROR[props.challenge.type],
+                type: "error",
+                additionalDetails: e instanceof Error ? e.message + e.stack : "",
+            });
         }
 
         return false;
