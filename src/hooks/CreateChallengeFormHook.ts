@@ -39,15 +39,19 @@ export default function useCreateChallengeForm() {
         try {
             const values = form.getValues();
             await ChallengeFactory.create(values);
-            openModal(
-                "Success! 😄",
-                "Challenge created successfully!",
-                "success",
-                () => (window.location.href = "/admin/challenges"),
-            );
+            openModal({
+                title: "Success! 😄",
+                message: "Challenge created successfully!",
+                type: "success",
+                closeAction: () => (window.location.href = "/admin/challenges"),
+            });
         } catch (error) {
-            if (error instanceof Error) openModal("Oh no! ☹️", error.message, "error");
-            else openModal("Oh no! ☹️", "There was an error creating the challenge. Please try again later.", "error");
+            openModal({
+                title: "Oh no! ☹️",
+                message: "There was an error creating the challenge. Please try again later.",
+                type: "error",
+                additionalDetails: error instanceof Error ? error.stack : "",
+            });
         }
     };
 
