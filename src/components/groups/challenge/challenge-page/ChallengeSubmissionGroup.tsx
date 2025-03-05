@@ -26,7 +26,7 @@ export default function ChallengeSubmissionGroup(props: Props) {
         try {
             if (await answerObj.verify()) {
                 openModal(
-                    "Congratulations!",
+                    "Woo hoo!",
                     ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type],
                     "success",
                     () => (window.location.href = "/"),
