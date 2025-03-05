@@ -25,7 +25,12 @@ export default function ChallengeSubmissionGroup(props: Props) {
         const answerObj = new Answer(Number(props.challenge.id), answer);
         try {
             if (await answerObj.verify()) {
-                openModal("Congratulations!", ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], "success");
+                openModal(
+                    "Congratulations!",
+                    ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type],
+                    "success",
+                    () => (window.location.href = "/"),
+                );
                 return true;
             } else {
                 openModal("Oopsie! ☹️", ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type], "error");
