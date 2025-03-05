@@ -24,7 +24,6 @@ export const useModal = () => {
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const [modalContent, setModalContent] = useState<{ title: string; message: string } | null>(null);
     const [modalType, setModalType] = useState<ModalType>("info");
-    const [modalOpened, setModalOpened] = useState<boolean>(false);
     const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
 
     const openModal = (title: string, message: string, type: ModalType, closeAction?: () => void) => {
@@ -34,12 +33,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         if (closeAction) {
             setOnCloseAction(() => closeAction);
         }
-
-        setModalOpened(true);
     };
 
     const closeModal = () => {
-        setModalOpened(false);
         setModalContent(null);
         setModalType("info");
 
@@ -51,23 +47,19 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         <ModalContext.Provider value={{ openModal, closeModal }}>
             {children}
 
-            {modalContent && modalType === "error" && (
-                <ErrorModal
-                    title={modalContent.title}
-                    message={modalContent.message}
-                    opened={modalOpened}
-                    onClose={closeModal}
-                />
-            )}
+            <ErrorModal
+                title={modalContent?.title || "Error"}
+                message={modalContent?.message || "An unknown error occurred"}
+                opened={modalType === "error"}
+                onClose={closeModal}
+            />
 
-            {modalContent && modalType === "success" && (
-                <SuccessModal
-                    title={modalContent.title}
-                    message={modalContent.message}
-                    opened={modalOpened}
-                    onClose={closeModal}
-                />
-            )}
+            <SuccessModal
+                title={modalContent?.title || "Success"}
+                message={modalContent?.message || "Task has been completed successfully"}
+                opened={modalType === "success"}
+                onClose={closeModal}
+            />
         </ModalContext.Provider>
     );
 };
