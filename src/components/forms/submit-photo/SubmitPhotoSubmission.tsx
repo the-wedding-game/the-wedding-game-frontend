@@ -35,8 +35,9 @@ export default function SubmitPhotoSubmission(props: Props) {
                 label={"Your submission"}
                 disableRemove={answerCorrect}
             />
-            {answerChanged && !answerCorrect && <IncorrectAnswerBadge />}
-            {answerChanged && answerCorrect && <CorrectAnswerBadge />}
+
+            {answerChanged && !loading && !answerCorrect && <IncorrectAnswerBadge />}
+            {answerChanged && !loading && answerCorrect && <CorrectAnswerBadge />}
 
             {!answerCorrect && answer && (
                 <SubmitButton
