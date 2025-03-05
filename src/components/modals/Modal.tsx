@@ -7,7 +7,7 @@ import SuccessModal from "@/components/modals/SuccessModal";
 type ModalType = "success" | "error" | "info" | "warning";
 
 type ModalContextType = {
-    openModal: (title: string, message: string, modalType: ModalType) => void;
+    openModal: (title: string, message: string, modalType: ModalType, onCloseAction?: () => void) => void;
     closeModal: () => void;
 };
 
@@ -25,10 +25,16 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const [modalContent, setModalContent] = useState<{ title: string; message: string } | null>(null);
     const [modalType, setModalType] = useState<ModalType>("info");
     const [modalOpened, setModalOpened] = useState<boolean>(false);
+    const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
 
-    const openModal = (title: string, message: string, type: ModalType) => {
+    const openModal = (title: string, message: string, type: ModalType, closeAction?: () => void) => {
         setModalContent({ title, message });
         setModalType(type);
+
+        if (closeAction) {
+            setOnCloseAction(() => closeAction);
+        }
+
         setModalOpened(true);
     };
 
@@ -36,6 +42,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         setModalOpened(false);
         setModalContent(null);
         setModalType("info");
+
+        onCloseAction();
+        setOnCloseAction(() => () => {});
     };
 
     return (
