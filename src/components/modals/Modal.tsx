@@ -50,6 +50,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ModalContext.Provider value={{ openModal, closeModal }}>
             {children}
+
             {modalContent && modalType === "error" && (
                 <ErrorModal
                     title={modalContent.title}
