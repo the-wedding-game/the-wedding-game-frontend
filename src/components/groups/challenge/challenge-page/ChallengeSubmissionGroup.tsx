@@ -25,7 +25,7 @@ export default function ChallengeSubmissionGroup(props: Props) {
         const answerObj = new Answer(props.challenge.id, answer);
         try {
             if (await answerObj.verify()) {
-                openModal(getSuccessModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type]));
+                openModal(getSuccessModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], "/"));
                 return true;
             } else {
                 openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type]));
