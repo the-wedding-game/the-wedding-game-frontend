@@ -7,7 +7,7 @@ import SubmitAnswerSubmission from "@/components/forms/submit-answer/SubmitAnswe
 import SubmitPhotoSubmission, {
     SubmitPhotoSubmissionSkeleton,
 } from "@/components/forms/submit-photo/SubmitPhotoSubmission";
-import { getErrorModal } from "@/constants/modal-templates";
+import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
 
 type Props = {
     challenge: Challenge;
@@ -25,7 +25,7 @@ export default function ChallengeSubmissionGroup(props: Props) {
         const answerObj = new Answer(props.challenge.id, answer);
         try {
             if (await answerObj.verify()) {
-                openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type]));
+                openModal(getSuccessModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], "/"));
                 return true;
             } else {
                 openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type]));
