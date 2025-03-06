@@ -26,6 +26,10 @@ export class LoginResponse {
         return this.access_token;
     }
 
+    public getRole(): UserRole {
+        return this.user.role;
+    }
+
     private check() {
         if (!this.access_token) throw new CannotProcessEntityError("LoginResponse", "access token is missing");
         if (this.access_token.length != 36) throw new CannotProcessEntityError("LoginResponse", "invalid access token");

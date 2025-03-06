@@ -1,6 +1,7 @@
 import { UserRole } from "@/classes/User/UserTypes";
 import { NotLoggedInError } from "@/errors/NotLoggedInError";
 import { LoginRequest } from "@/api/auth/login/LoginRequest";
+import { NotAdminError } from "@/errors/NotAdminError";
 
 export class User {
     username: string;
@@ -19,9 +20,20 @@ export class User {
         return accessToken;
     }
 
-    public static async login(username: string) {
+    public static async login(username: string): Promise<void> {
         const loginRequest = new LoginRequest(username);
         const loginResponse = await loginRequest.send();
+        localStorage.setItem("accessToken", loginResponse.getAccessToken());
+    }
+
+    public static async adminLogin(username: string, password: string): Promise<void> {
+        const loginRequest = new LoginRequest(username, password);
+        const loginResponse = await loginRequest.send();
+
+        if (loginResponse.getRole() !== "ADMIN") {
+            throw new NotAdminError();
+        }
+
         localStorage.setItem("accessToken", loginResponse.getAccessToken());
     }
 }
