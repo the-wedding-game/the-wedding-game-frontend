@@ -3,6 +3,7 @@ import ImageUploadButton, { ImageUploadButtonSkeleton } from "@/components/input
 import React from "react";
 import { Image as ImageManager } from "@/classes/Image/Image";
 import { useModal } from "@/components/modals/Modal";
+import { getErrorModal } from "@/constants/modal-templates";
 
 type Props = {
     setLoading: (loading: boolean) => void;
@@ -29,12 +30,7 @@ export default function ImageUploadHandler(props: Props) {
             const url = await image.upload();
             props.setImage(url);
         } catch (error) {
-            openModal({
-                title: "Oh no! ☹️",
-                message: "There was an error uploading the image. Please try again later.",
-                type: "error",
-                additionalDetails: error instanceof Error ? error.stack : "",
-            });
+            return openModal(getErrorModal("There was an error uploading the image. Please try again later.", error));
         } finally {
             props.setLoading(false);
         }

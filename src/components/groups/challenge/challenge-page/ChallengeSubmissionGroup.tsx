@@ -7,51 +7,32 @@ import SubmitAnswerSubmission from "@/components/forms/submit-answer/SubmitAnswe
 import SubmitPhotoSubmission, {
     SubmitPhotoSubmissionSkeleton,
 } from "@/components/forms/submit-photo/SubmitPhotoSubmission";
+import { getErrorModal } from "@/constants/modal-templates";
 
 type Props = {
     challenge: Challenge;
 };
 
-// TODO: simplify this component logic
 export default function ChallengeSubmissionGroup(props: Props) {
     const { openModal } = useModal();
 
     async function submitAnswer(answer: string | null): Promise<boolean> {
         if (!answer) {
-            openModal({
-                title: "Oopsie! ☹️",
-                message: ANSWER_VERIFICATION_MESSAGES.NO_ANSWER[props.challenge.type],
-                type: "error",
-            });
+            openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.NO_ANSWER[props.challenge.type]));
             return false;
         }
 
-        const answerObj = new Answer(Number(props.challenge.id), answer);
+        const answerObj = new Answer(props.challenge.id, answer);
         try {
             if (await answerObj.verify()) {
-                openModal({
-                    title: "Woo hoo!",
-                    message: ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type],
-                    type: "success",
-                    closeAction: () => (window.location.href = "/"),
-                });
+                openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type]));
                 return true;
             } else {
-                openModal({
-                    title: "Oopsie! ☹️",
-                    message: ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type],
-                    type: "error",
-                    additionalDetails: "fuck off nerd",
-                });
+                openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type]));
                 return false;
             }
         } catch (e) {
-            openModal({
-                title: "Oopsie! ☹️",
-                message: ANSWER_VERIFICATION_MESSAGES.ERROR[props.challenge.type],
-                type: "error",
-                additionalDetails: e instanceof Error ? e.message + e.stack : "",
-            });
+            openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.ERROR[props.challenge.type], e));
         }
 
         return false;

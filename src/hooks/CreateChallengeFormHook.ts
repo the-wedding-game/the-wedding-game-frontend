@@ -10,6 +10,7 @@ import {
 } from "@/utils/validators";
 import { ChallengeFactory } from "@/classes/Challenge/ChallengeFactory";
 import { useModal } from "@/components/modals/Modal";
+import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
 
 export default function useCreateChallengeForm() {
     const { openModal } = useModal();
@@ -39,19 +40,11 @@ export default function useCreateChallengeForm() {
         try {
             const values = form.getValues();
             await ChallengeFactory.create(values);
-            openModal({
-                title: "Success! 😄",
-                message: "Challenge created successfully!",
-                type: "success",
-                closeAction: () => (window.location.href = "/admin/challenges"),
-            });
+            return openModal(getSuccessModal("Challenge created successfully!", "/admin/challenges"));
         } catch (error) {
-            openModal({
-                title: "Oh no! ☹️",
-                message: "There was an error creating the challenge. Please try again later.",
-                type: "error",
-                additionalDetails: error instanceof Error ? error.stack : "",
-            });
+            return openModal(
+                getErrorModal("There was an error creating the challenge. Please try again later!", error),
+            );
         }
     };
 

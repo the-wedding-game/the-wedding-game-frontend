@@ -4,7 +4,7 @@ import { validatePassword, validateUsername } from "@/utils/validators";
 import { User } from "@/classes/User/User";
 import { NotAuthorizedError } from "@/errors/NotAuthorizedError";
 import { NotAdminError } from "@/errors/NotAdminError";
-import { getGenericErrorModal, INVALID_CREDENTIALS_MODAL, NOT_ADMIN_MODAL } from "@/constants/modal-templates";
+import { getErrorModal, getGenericErrorModal } from "@/constants/modal-templates";
 
 export default function useAdminLoginForm() {
     const { openModal } = useModal();
@@ -28,8 +28,12 @@ export default function useAdminLoginForm() {
             await User.adminLogin(values.username, values.password);
             window.location.href = "/admin";
         } catch (error: unknown) {
-            if (error instanceof NotAuthorizedError) return openModal(INVALID_CREDENTIALS_MODAL);
-            if (error instanceof NotAdminError) return openModal(NOT_ADMIN_MODAL);
+            if (error instanceof NotAuthorizedError)
+                return openModal(getErrorModal("Invalid username and/or password. Please try again."));
+
+            if (error instanceof NotAdminError)
+                return openModal(getErrorModal("This user is not an admin. Try again with an admin account"));
+
             return openModal(getGenericErrorModal(error));
         }
     };
