@@ -6,7 +6,7 @@ import SuccessModal from "@/components/modals/SuccessModal";
 
 type ModalType = "success" | "error" | "info" | "warning";
 
-type OpenModalParams = {
+export type OpenModalParams = {
     title: string;
     message: string;
     type: ModalType;

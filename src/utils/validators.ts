@@ -28,3 +28,12 @@ export function validateChallengeAnswer(answer: string | null, challengeType: st
 
     if (!answer) return "Answer is required";
 }
+
+export function validateUsername(username: string | null): string | undefined {
+    if (!username) return "Username is required";
+}
+
+export function validatePassword(password: string | null): string | undefined {
+    if (!password) return "Password is required";
+    if (password.length < 5) return "Password should be at least 5 characters long";
+}

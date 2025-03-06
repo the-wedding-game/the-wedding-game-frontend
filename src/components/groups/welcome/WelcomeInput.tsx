@@ -1,3 +1,5 @@
+"use client";
+
 import { TextInput } from "@mantine/core";
 import SubmitButton from "@/components/buttons/SubmitButton";
 import { useState } from "react";
