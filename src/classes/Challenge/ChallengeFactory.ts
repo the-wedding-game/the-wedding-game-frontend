@@ -13,8 +13,8 @@ export class ChallengeFactory {
         return response.getChallenge();
     }
 
-    static async getAll(): Promise<Challenge[]> {
-        const request = new GetAllChallengesRequest();
+    static async getAll(includeInactive: boolean): Promise<Challenge[]> {
+        const request = new GetAllChallengesRequest(includeInactive);
         const response = await request.send();
         return response.getChallenges();
     }
