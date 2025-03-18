@@ -8,7 +8,7 @@ import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
 import AnimationFade from "@/components/framer-motion/AnimationFade";
 
 export default function Home() {
-    const { challenges, loading } = useAllChallenges();
+    const { challenges, loading } = useAllChallenges(false);
 
     return (
         <div className={`flex flex-col space-y-10 w-full`}>

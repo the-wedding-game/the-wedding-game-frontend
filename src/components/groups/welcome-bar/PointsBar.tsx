@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function PointsBar() {
     const { points, loading: pointsLoading } = usePoints();
-    const { challenges, loading: challengesLoading } = useAllChallenges();
+    const { challenges, loading: challengesLoading } = useAllChallenges(false);
     const maxPoints = challenges?.reduce((total, challenge) => total + challenge.points, 0);
 
     return (

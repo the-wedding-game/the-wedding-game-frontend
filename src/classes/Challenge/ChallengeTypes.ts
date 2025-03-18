@@ -10,3 +10,5 @@ export const CHALLENGE_TYPES = {
 };
 
 export type ChallengeType = keyof typeof CHALLENGE_TYPES;
+
+export type ChallengeStatus = "ACTIVE" | "INACTIVE";

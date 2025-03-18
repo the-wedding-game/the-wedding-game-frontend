@@ -1,4 +1,4 @@
-import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
+import { ChallengeStatus, ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 
 export class Challenge {
     id: number;
@@ -6,9 +6,9 @@ export class Challenge {
     description: string;
     points: number;
     image: string;
-    status: string;
+    status: ChallengeStatus;
     type: ChallengeType;
-    completed: boolean;
+    completed?: boolean;
 
     constructor(
         id: number,
@@ -16,7 +16,7 @@ export class Challenge {
         description: string,
         points: number,
         image: string,
-        status: string,
+        status: ChallengeStatus,
         type: ChallengeType,
         completed: boolean,
     ) {
