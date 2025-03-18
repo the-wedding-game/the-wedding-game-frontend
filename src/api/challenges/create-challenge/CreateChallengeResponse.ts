@@ -1,6 +1,6 @@
 import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 import { Challenge } from "@/classes/Challenge/Challenge";
-import { ChallengeType } from "@/classes/Challenge/ChallengeTypes";
+import { ChallengeStatus, ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 
 export type CreateChallengeResponseBody = {
     id: number;
@@ -8,7 +8,7 @@ export type CreateChallengeResponseBody = {
     description: string;
     points: number;
     image: string;
-    status: string;
+    status: ChallengeStatus;
     type: ChallengeType;
 };
 
