@@ -3,7 +3,7 @@ import { PrivilegedRequest } from "@/api/PrivilegedRequest";
 
 const METHOD = "POST";
 
-export type AnswerVerificationRequestBody = {
+type AnswerVerificationRequestBody = {
     answer: string;
 };
 
