@@ -46,7 +46,7 @@ export function generateRows(challenges: Challenge[]) {
                 <ChallengeTypeBadge type={challenge.type} />
             </Table.Td>
             <Table.Td>
-                <ChallengeStatusBadge status={challenge.status} />
+                <ChallengeStatusBadge challenge={challenge} />
             </Table.Td>
             <Table.Td>
                 <LinkButton color={"blue"} link={`/challenge/${challenge.id}`}>

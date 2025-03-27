@@ -1,4 +1,6 @@
 import { CHALLENGE_TYPES } from "@/classes/Challenge/ChallengeTypes";
+import { Challenge } from "@/classes/Challenge/Challenge";
+import { CannotProcessEntityError } from "@/errors/CannotProcessEntityError";
 
 export function validateChallengeName(name: string | null): string | undefined {
     if (!name) return "Challenge name is required";
@@ -36,4 +38,17 @@ export function validateUsername(username: string | null): string | undefined {
 export function validatePassword(password: string | null): string | undefined {
     if (!password) return "Password is required";
     if (password.length < 5) return "Password should be at least 5 characters long";
+}
+
+export function validateChallenge(challenge: Challenge, completedRequired: boolean = true): void {
+    if (!challenge) throw new CannotProcessEntityError("GetChallengeResponse", "challenge is missing");
+    if (!challenge.id) throw new CannotProcessEntityError("GetChallengeResponse", "id is missing");
+    if (!challenge.name) throw new CannotProcessEntityError("GetChallengeResponse", "name is missing");
+    if (!challenge.description) throw new CannotProcessEntityError("GetChallengeResponse", "description is missing");
+    if (!challenge.points) throw new CannotProcessEntityError("GetChallengeResponse", "points is missing");
+    if (!challenge.image) throw new CannotProcessEntityError("GetChallengeResponse", "image is missing");
+    if (!challenge.status) throw new CannotProcessEntityError("GetChallengeResponse", "status is missing");
+    if (!challenge.type) throw new CannotProcessEntityError("GetChallengeResponse", "type is missing");
+    if (completedRequired && challenge.completed === undefined)
+        throw new CannotProcessEntityError("GetChallengeResponse", "completed is missing");
 }
