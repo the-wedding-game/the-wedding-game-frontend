@@ -1,5 +1,5 @@
-import { VerifyAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer/VerifyAnswerResponse";
 import { PrivilegedRequest } from "@/api/PrivilegedRequest";
+import { VerifyAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer/VerifyAnswerResponse";
 
 const METHOD = "POST";
 

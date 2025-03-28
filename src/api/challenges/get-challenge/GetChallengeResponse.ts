@@ -7,7 +7,16 @@ export class GetChallengeResponse {
     private readonly challenge: Challenge;
 
     public constructor(data: GetChallengeResponseBody) {
-        this.challenge = data;
+        this.challenge = new Challenge(
+            data.id,
+            data.name,
+            data.description,
+            data.points,
+            data.image,
+            data.status,
+            data.type,
+            data.completed,
+        );
         this.check();
     }
 
