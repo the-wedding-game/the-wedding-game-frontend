@@ -3,7 +3,7 @@ import {
     UpdateChallengeRequest,
     UpdateChallengeRequestBody,
 } from "@/api/challenges/update-challenge/UpdateChallengeRequest";
-import { GetAnswerRequest } from "@/api/challenges/verify-answer/GetAnswerRequest";
+import { GetAnswerRequest } from "@/api/challenges/get-answer/GetAnswerRequest";
 import { GetSubmissionsRequest } from "@/api/challenges/get-submissions/GetSubmissionsRequest";
 
 export class Challenge {

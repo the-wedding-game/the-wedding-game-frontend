@@ -1,4 +1,4 @@
-import { GetAnswerRequest } from "@/api/challenges/verify-answer/GetAnswerRequest";
+import { GetAnswerRequest } from "@/api/challenges/get-answer/GetAnswerRequest";
 
 export class Answer {
     challengeId: number;
