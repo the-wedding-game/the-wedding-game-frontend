@@ -54,7 +54,7 @@ export function generateRows(challenges: Challenge[]) {
                 </LinkButton>
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <LinkButton color={"orange"} link={`/challenge/${challenge.id}/edit`}>
+                <LinkButton color={"orange"} link={`/admin/challenges/${challenge.id}/edit`}>
                     Edit
                 </LinkButton>
             </Table.Td>

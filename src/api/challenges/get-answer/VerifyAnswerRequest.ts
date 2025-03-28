@@ -1,4 +1,4 @@
-import { VerifyAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer/VerifyAnswerResponse";
+import { GetAnswerResponse, VerifyAnswerResponseBody } from "@/api/challenges/verify-answer/GetAnswerResponse";
 import { PrivilegedRequest } from "@/api/PrivilegedRequest";
 
 const METHOD = "POST";
@@ -16,11 +16,11 @@ export class VerifyAnswerRequest extends PrivilegedRequest {
         this.answer = answer;
     }
 
-    public async send(): Promise<VerifyAnswerResponse> {
+    public async send(): Promise<GetAnswerResponse> {
         const requestBody: AnswerVerificationRequestBody = {
             answer: this.answer,
         };
         const response = (await super.send(requestBody)) as VerifyAnswerResponseBody;
-        return new VerifyAnswerResponse(response);
+        return new GetAnswerResponse(response);
     }
 }

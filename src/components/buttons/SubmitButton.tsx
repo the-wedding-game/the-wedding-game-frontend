@@ -11,14 +11,7 @@ export default function SubmitButton(props: Props) {
     const buttonText = props.buttonText || "Submit";
 
     return (
-        <Button
-            type="submit"
-            mt="sm"
-            disabled={props.disabled}
-            loading={props.loading}
-            onClick={props.onClick}
-            {...dimensions}
-        >
+        <Button mt="sm" disabled={props.disabled} loading={props.loading} onClick={props.onClick} {...dimensions}>
             {buttonText}
         </Button>
     );

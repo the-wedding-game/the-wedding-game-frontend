@@ -1,4 +1,4 @@
-import { VerifyAnswerRequest } from "@/api/challenges/verify-answer/VerifyAnswerRequest";
+import { GetAnswerRequest } from "@/api/challenges/verify-answer/GetAnswerRequest";
 
 export class Answer {
     challengeId: number;
@@ -10,7 +10,7 @@ export class Answer {
     }
 
     async verify(): Promise<boolean> {
-        const request = new VerifyAnswerRequest(this.challengeId, this.answer);
+        const request = new GetAnswerRequest(this.challengeId, this.answer);
         const response = await request.send();
         return response.getStatus();
     }
