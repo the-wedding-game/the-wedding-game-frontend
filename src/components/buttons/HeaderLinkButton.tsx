@@ -6,7 +6,7 @@ type Props = {
 };
 export default function HeaderLinkButton(props: Props) {
     return (
-        <a href={props.link} target={"_blank"}>
+        <a href={props.link}>
             <Button variant={"outline"} color={"white"} radius="sm" size={"sm"}>
                 {props.text}
             </Button>
