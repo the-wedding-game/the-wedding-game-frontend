@@ -7,7 +7,7 @@ export function getSuccessModal(message: string, redirectUrl?: string) {
         type: "success",
     };
 
-    if (redirectUrl) openModalParams.closeAction = () => (window.location.href = "/admin/challenges");
+    if (redirectUrl) openModalParams.closeAction = () => (window.location.href = redirectUrl);
     return openModalParams;
 }
 
