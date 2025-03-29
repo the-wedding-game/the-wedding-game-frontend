@@ -27,7 +27,7 @@ export default function EditChallengeFormInner(props: Props) {
     useEffect(() => {
         if (coverPhoto) form.setFieldValue("image", coverPhoto);
         else form.setFieldValue("image", "");
-    }, [coverPhoto]);
+    }, [coverPhoto, form]);
 
     useEffect(() => {
         props.challenge
@@ -40,7 +40,7 @@ export default function EditChallengeFormInner(props: Props) {
                     getErrorModal("An unexpected error occurred while fetching the submissions of the challenge.", err),
                 );
             });
-    }, []);
+    }, [openModal, props.challenge]);
 
     form.watch("type", (type) => {
         if (type.value === CHALLENGE_TYPES.ANSWER_QUESTION.value) {

@@ -13,7 +13,7 @@ export function useAllChallenges(includeInactive: boolean): { challenges: Challe
                 setChallenges(challenge);
             })
             .finally(() => setLoading(false));
-    }, []);
+    }, [includeInactive]);
 
     return {
         challenges,

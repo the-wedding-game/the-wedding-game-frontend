@@ -24,7 +24,7 @@ export default function useGallery() {
 
     useEffect(() => {
         fetchGallery();
-    }, []);
+    });
 
     return {
         gallery,

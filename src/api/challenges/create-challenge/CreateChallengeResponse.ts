@@ -16,7 +16,15 @@ export class CreateChallengeResponse {
     private readonly challenge: Challenge;
 
     public constructor(data: CreateChallengeResponseBody) {
-        this.challenge = { ...data, completed: false };
+        this.challenge = new Challenge(
+            data.id,
+            data.name,
+            data.description,
+            data.points,
+            data.image,
+            data.status,
+            data.type,
+        );
         this.check();
     }
 

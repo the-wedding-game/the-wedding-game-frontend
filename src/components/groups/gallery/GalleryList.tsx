@@ -17,7 +17,7 @@ export default function GalleryList(props: Props) {
     useEffect(() => {
         const totalImages = pages * 8;
         setVisibleImages(props.gallery.slice(0, totalImages));
-    }, [pages]);
+    }, [pages, props.gallery]);
 
     document.onscroll = () => {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {

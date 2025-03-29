@@ -24,7 +24,7 @@ export default function useLeaderboard() {
 
     useEffect(() => {
         fetchLeaderboard();
-    }, []);
+    });
 
     return {
         leaderboard,
