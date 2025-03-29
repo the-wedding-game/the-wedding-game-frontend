@@ -22,7 +22,7 @@ export default function ChallengeStatusBadge(props: Props) {
                 openModal(getGenericErrorModal(error));
             })
             .finally(() => setLoading(false));
-    }, [checked]);
+    }, [checked, openModal, props.challenge]);
 
     return <Switch size="md" checked={checked} onChange={() => setChecked(!checked)} disabled={loading} />;
 }

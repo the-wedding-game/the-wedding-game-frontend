@@ -17,19 +17,6 @@ import { useEffect } from "react";
 export default function useCreateOrEditChallengeForm(challenge: Challenge) {
     const { openModal } = useModal();
 
-    useEffect(() => {
-        if (challenge.type === CHALLENGE_TYPES.ANSWER_QUESTION.value) {
-            challenge
-                .getAnswer()
-                .then((answer) => {
-                    form.setValues({ answer: answer });
-                })
-                .catch((error) => {
-                    openModal(getErrorModal("An unexpected error occurred while fetching the answer.", error));
-                });
-        }
-    }, []);
-
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {
@@ -51,6 +38,19 @@ export default function useCreateOrEditChallengeForm(challenge: Challenge) {
         },
         validateInputOnChange: true,
     });
+
+    useEffect(() => {
+        if (challenge.type === CHALLENGE_TYPES.ANSWER_QUESTION.value) {
+            challenge
+                .getAnswer()
+                .then((answer) => {
+                    form.setValues({ answer: answer });
+                })
+                .catch((error) => {
+                    openModal(getErrorModal("An unexpected error occurred while fetching the answer.", error));
+                });
+        }
+    }, [challenge, form, openModal]);
 
     const submit = async function () {
         try {
