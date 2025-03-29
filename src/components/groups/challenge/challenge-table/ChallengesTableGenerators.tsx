@@ -12,6 +12,9 @@ import PointsBadge, { PointsBadgeSkeleton } from "@/components/badges/PointsBadg
 import ChallengeCardDescription, {
     ChallengeCardDescriptionSkeleton,
 } from "@/components/groups/challenge/challenge-card/ChallengeCardDescription";
+import ViewIcon from "@/components/icons/ViewIcon";
+import EditIcon from "@/components/icons/EditIcon";
+import DeleteIcon from "@/components/icons/DeleteIcon";
 
 export function generateRows(challenges: Challenge[]) {
     if (challenges.length === 0) {
@@ -49,17 +52,17 @@ export function generateRows(challenges: Challenge[]) {
                 <ChallengeStatusBadge challenge={challenge} />
             </Table.Td>
             <Table.Td>
-                <LinkButton color={"blue"} link={`/challenge/${challenge.id}`}>
+                <LinkButton color={"blue"} icon={<ViewIcon />} link={`/challenge/${challenge.id}`}>
                     View
                 </LinkButton>
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <LinkButton color={"orange"} link={`/admin/challenges/${challenge.id}/edit`}>
+                <LinkButton color={"orange"} icon={<EditIcon />} link={`/admin/challenges/${challenge.id}/edit`}>
                     Edit
                 </LinkButton>
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <LinkButton color={"red"} link={`/challenge/${challenge.id}`}>
+                <LinkButton color={"red"} icon={<DeleteIcon />} link={`/challenge/${challenge.id}`}>
                     Delete
                 </LinkButton>
             </Table.Td>
