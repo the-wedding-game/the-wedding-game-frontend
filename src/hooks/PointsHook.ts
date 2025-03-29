@@ -23,7 +23,7 @@ export default function usePoints() {
 
     useEffect(() => {
         fetchPoints();
-    });
+    }, []);
 
     return {
         points,
