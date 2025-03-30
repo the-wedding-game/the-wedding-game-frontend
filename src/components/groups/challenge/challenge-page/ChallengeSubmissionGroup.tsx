@@ -8,6 +8,7 @@ import SubmitPhotoSubmission, {
     SubmitPhotoSubmissionSkeleton,
 } from "@/components/forms/submit-photo/SubmitPhotoSubmission";
 import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
+import { useRouter } from "next/navigation";
 
 type Props = {
     challenge: Challenge;
@@ -15,6 +16,7 @@ type Props = {
 
 export default function ChallengeSubmissionGroup(props: Props) {
     const { openModal } = useModal();
+    const router = useRouter();
 
     async function submitAnswer(answer: string | null): Promise<boolean> {
         if (!answer) {
@@ -25,7 +27,11 @@ export default function ChallengeSubmissionGroup(props: Props) {
         const answerObj = new Answer(props.challenge.id, answer);
         try {
             if (await answerObj.verify()) {
-                openModal(getSuccessModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], "/"));
+                openModal(
+                    getSuccessModal(ANSWER_VERIFICATION_MESSAGES.SUCCESS[props.challenge.type], () => {
+                        router.push("/");
+                    }),
+                );
                 return true;
             } else {
                 openModal(getErrorModal(ANSWER_VERIFICATION_MESSAGES.FAILURE[props.challenge.type]));

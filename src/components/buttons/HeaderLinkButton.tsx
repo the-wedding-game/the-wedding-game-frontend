@@ -1,4 +1,5 @@
 import { Button } from "@mantine/core";
+import Link from "next/link";
 
 type Props = {
     text: string;
@@ -6,10 +7,10 @@ type Props = {
 };
 export default function HeaderLinkButton(props: Props) {
     return (
-        <a href={props.link}>
+        <Link href={props.link}>
             <Button variant={"outline"} color={"white"} radius="sm" size={"sm"}>
                 {props.text}
             </Button>
-        </a>
+        </Link>
     );
 }

@@ -6,17 +6,19 @@ import { useState } from "react";
 import { useModal } from "@/components/modals/Modal";
 import { User } from "@/classes/User/User";
 import { getErrorModal } from "@/constants/modal-templates";
+import { useRouter } from "next/navigation";
 
 export default function WelcomeInput() {
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
     const { openModal } = useModal();
+    const router = useRouter();
 
     async function submit() {
         setLoading(true);
         try {
             await User.login(username);
-            window.location.href = "/";
+            router.push("/");
         } catch (error: unknown) {
             return openModal(getErrorModal("There was an error logging in. Please try again later.", error));
         } finally {

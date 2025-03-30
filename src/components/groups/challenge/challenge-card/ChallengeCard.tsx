@@ -6,6 +6,7 @@ import ChallengeCardContent, {
 import ChallengeCardImage, {
     ChallengeCardImageSkeleton,
 } from "@/components/groups/challenge/challenge-card/ChallengeCardImage";
+import Link from "next/link";
 
 type Props = {
     challenge: Challenge;
@@ -16,14 +17,14 @@ export default function ChallengeCard(props: Props) {
 
     return (
         <Card shadow="sm" padding="0" radius="md" withBorder className={`max-w-96 w-full`}>
-            <a href={`/challenge/${props.challenge.id}`}>
+            <Link href={`/challenge/${props.challenge.id}`}>
                 <div className={`flex flex-col sm:flex-row sm:space-x-2`}>
                     <div className={`sm:w-1/2 h-full`}>
                         <ChallengeCardImage challenge={challenge} />
                     </div>
                     <ChallengeCardContent challenge={challenge} />
                 </div>
-            </a>
+            </Link>
         </Card>
     );
 }

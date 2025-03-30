@@ -13,9 +13,11 @@ import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
 import { Challenge } from "@/classes/Challenge/Challenge";
 import { CHALLENGE_TYPES, ChallengeType } from "@/classes/Challenge/ChallengeTypes";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function useCreateOrEditChallengeForm(challenge: Challenge) {
     const { openModal } = useModal();
+    const router = useRouter();
 
     const form = useForm({
         mode: "uncontrolled",
@@ -77,13 +79,13 @@ export default function useCreateOrEditChallengeForm(challenge: Challenge) {
         if (values.answer) challenge.answer = values.answer;
 
         await challenge.update();
-        return openModal(getSuccessModal("Challenge updated successfully!", "/admin/challenges"));
+        return openModal(getSuccessModal("Challenge updated successfully!", () => router.push("/admin/challenges")));
     };
 
     const createChallenge = async function () {
         const values = form.getValues();
         await ChallengeFactory.create(values);
-        return openModal(getSuccessModal("Challenge created successfully!", "/admin/challenges"));
+        return openModal(getSuccessModal("Challenge created successfully!", () => router.push("/admin/challenges")));
     };
 
     return {

@@ -1,13 +1,13 @@
 import { OpenModalParams } from "@/components/modals/Modal";
 
-export function getSuccessModal(message: string, redirectUrl?: string) {
+export function getSuccessModal(message: string, redirection?: () => void): OpenModalParams {
     const openModalParams: OpenModalParams = {
         title: "Yay! 😄",
         message: message,
         type: "success",
     };
 
-    if (redirectUrl) openModalParams.closeAction = () => (window.location.href = redirectUrl);
+    if (redirection) openModalParams.closeAction = () => redirection();
     return openModalParams;
 }
 
