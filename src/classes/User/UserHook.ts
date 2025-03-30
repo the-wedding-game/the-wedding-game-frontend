@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { User } from "@/classes/User/User";
 import { UserFactory } from "@/classes/User/UserFactory";
+import { useRouter } from "next/navigation";
 
 export function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         setLoading(true);
@@ -14,7 +16,7 @@ export function useUser() {
             })
             .catch(() => {
                 setUser(null);
-                window.location.href = "/welcome";
+                router.push("/welcome");
             })
             .finally(() => {
                 setLoading(false);
