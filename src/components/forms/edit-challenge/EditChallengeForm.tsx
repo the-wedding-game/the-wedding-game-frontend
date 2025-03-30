@@ -8,7 +8,7 @@ import EditChallengeFormOuter, {
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function EditChallengeForm(props: Props) {

@@ -15,7 +15,7 @@ import ChallengeSubmissionGroup, {
 import React from "react";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengePage(props: Props) {
