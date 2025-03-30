@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import React from "react";
 
 type Props = {
-    removeImage: () => void;
+    readonly removeImage: () => void;
 };
 
 export default function ImageRemoveButton(props: Props) {

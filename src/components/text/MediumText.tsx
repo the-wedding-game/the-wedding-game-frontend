@@ -2,8 +2,8 @@ import { Skeleton, Text } from "@mantine/core";
 import { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
-    weight?: number;
+    readonly children: ReactNode;
+    readonly weight?: number;
 };
 
 export default function MediumText(props: Props) {
@@ -16,6 +16,6 @@ export default function MediumText(props: Props) {
     );
 }
 
-export function MediumTextSkeleton(props: { w: string }) {
+export function MediumTextSkeleton(props: { readonly w: string }) {
     return <Skeleton radius={"xl"} w={props.w} height={20} mb={10} />;
 }

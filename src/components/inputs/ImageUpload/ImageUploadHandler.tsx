@@ -6,8 +6,8 @@ import { useModal } from "@/components/modals/Modal";
 import { getErrorModal } from "@/constants/modal-templates";
 
 type Props = {
-    setLoading: (loading: boolean) => void;
-    setImage: (url: string | null) => void;
+    readonly setLoading: (loading: boolean) => void;
+    readonly setImage: (url: string | null) => void;
 };
 
 export default function ImageUploadHandler(props: Props) {

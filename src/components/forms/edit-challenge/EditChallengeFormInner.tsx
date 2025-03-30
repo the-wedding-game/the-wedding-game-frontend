@@ -11,7 +11,7 @@ import { useModal } from "@/components/modals/Modal";
 import { getErrorModal } from "@/constants/modal-templates";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function EditChallengeFormInner(props: Props) {

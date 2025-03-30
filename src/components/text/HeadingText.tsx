@@ -2,7 +2,7 @@ import { Skeleton, Title } from "@mantine/core";
 import { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function HeadingText(props: Props) {
@@ -13,6 +13,6 @@ export default function HeadingText(props: Props) {
     );
 }
 
-export function HeadingTextSkeleton(props: { w: string }) {
+export function HeadingTextSkeleton(props: { readonly w: string }) {
     return <Skeleton radius={"xl"} w={props.w} height={40} />;
 }

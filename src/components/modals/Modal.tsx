@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useCallback, useContext, useState } from "react";
 import ErrorModal from "@/components/modals/ErrorModal";
 import SuccessModal from "@/components/modals/SuccessModal";
 
@@ -29,7 +29,7 @@ export const useModal = () => {
     return context;
 };
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
+export const ModalProvider = ({ children }: { readonly children: ReactNode }) => {
     const [modalContent, setModalContent] = useState<{ title: string; message: string } | null>(null);
     const [modalType, setModalType] = useState<ModalType>("info");
     const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
@@ -57,8 +57,11 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         setAdditionalDetails(undefined);
     };
 
+    const openModalCallback = useCallback(openModal, []);
+    const closeModalCallback = useCallback(closeModal, [onCloseAction]);
+
     return (
-        <ModalContext.Provider value={{ openModal, closeModal }}>
+        <ModalContext.Provider value={{ openModal: openModalCallback, closeModal: closeModalCallback }}>
             {children}
 
             <ErrorModal

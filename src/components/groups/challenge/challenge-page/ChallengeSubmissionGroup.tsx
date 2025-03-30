@@ -11,7 +11,7 @@ import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
 import { useRouter } from "next/navigation";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengeSubmissionGroup(props: Props) {

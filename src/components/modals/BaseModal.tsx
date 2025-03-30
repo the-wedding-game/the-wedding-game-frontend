@@ -5,14 +5,14 @@ import LargeText from "@/components/text/LargeText";
 import TinyText from "@/components/text/TinyText";
 
 type Props = {
-    title: string;
-    message: string;
-    opened: boolean;
-    onClose: () => void;
-    buttonText: string;
-    headerIcon?: ReactNode;
-    additionalDetails?: string;
-    buttonColor?: MantineColor;
+    readonly title: string;
+    readonly message: string;
+    readonly opened: boolean;
+    readonly onClose: () => void;
+    readonly buttonText: string;
+    readonly headerIcon?: ReactNode;
+    readonly additionalDetails?: string;
+    readonly buttonColor?: MantineColor;
 };
 
 export default function BaseModal(props: Props) {

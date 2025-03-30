@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import SubmitButton from "@/components/buttons/SubmitButton";
 
 type Props = {
-    gallery: GalleryEntry[];
+    readonly gallery: GalleryEntry[];
 };
 
 export default function GalleryList(props: Props) {
@@ -30,7 +30,7 @@ export default function GalleryList(props: Props) {
             {props.gallery.length !== 0 && (
                 <div className={`grid grid-cols-4 sm:grid-cols-2 gap-6 sm:gap-2 justify-start`}>
                     {visibleImages.map((galleryEntry, index) => (
-                        <AnimationStagger key={index} index={index} length={props.gallery.length}>
+                        <AnimationStagger key={galleryEntry.url} index={index}>
                             <GalleryEntryCard entry={galleryEntry} />
                         </AnimationStagger>
                     ))}

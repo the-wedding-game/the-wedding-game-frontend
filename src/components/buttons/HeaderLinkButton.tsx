@@ -2,8 +2,8 @@ import { Button } from "@mantine/core";
 import Link from "next/link";
 
 type Props = {
-    text: string;
-    link: string;
+    readonly text: string;
+    readonly link: string;
 };
 export default function HeaderLinkButton(props: Props) {
     return (

@@ -4,7 +4,7 @@ import GalleryMetadata from "@/components/groups/gallery/GalleryMetadata";
 import GalleryImage, { GalleryImageSkeleton } from "@/components/groups/gallery/GalleryImage";
 
 type Props = {
-    entry: GalleryEntry;
+    readonly entry: GalleryEntry;
 };
 
 export default function GalleryEntryCard(props: Props) {

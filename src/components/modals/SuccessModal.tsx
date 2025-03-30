@@ -3,10 +3,10 @@ import BaseModal from "@/components/modals/BaseModal";
 import { IconProgressCheck } from "@tabler/icons-react";
 
 type Props = {
-    title: string;
-    message: string;
-    opened: boolean;
-    onClose: () => void;
+    readonly title: string;
+    readonly message: string;
+    readonly opened: boolean;
+    readonly onClose: () => void;
 };
 
 export default function ErrorModal(props: Props) {

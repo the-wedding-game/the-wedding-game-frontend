@@ -9,7 +9,7 @@ import ChallengeCardDescription, {
 } from "@/components/groups/challenge/challenge-card/ChallengeCardDescription";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengeCardContent(props: Props) {

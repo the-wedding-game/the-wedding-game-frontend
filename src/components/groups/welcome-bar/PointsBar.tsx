@@ -18,7 +18,7 @@ export default function PointsBar() {
         <AnimationWrapper>
             {!pointsLoading && !challengesLoading && (
                 <AnimationFade key={"loaded"}>
-                    <PointsBarInner points={points || 0} maxPoints={maxPoints || 100} />
+                    <PointsBarInner points={points ?? 0} maxPoints={maxPoints ?? 100} />
                 </AnimationFade>
             )}
 
@@ -42,8 +42,8 @@ export function PointsBarSkeleton() {
 }
 
 type Props = {
-    points: number;
-    maxPoints: number;
+    readonly points: number;
+    readonly maxPoints: number;
 };
 function PointsBarInner(props: Props) {
     const points = props.points;

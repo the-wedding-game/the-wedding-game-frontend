@@ -1,7 +1,8 @@
 import { AnimatePresence } from "framer-motion";
+import { ReactNode } from "react";
 
 type Props = {
-    children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function AnimationWrapper(props: Props) {

@@ -1,14 +1,14 @@
 import { Button, Skeleton } from "@mantine/core";
 
 type Props = {
-    disabled?: boolean;
-    loading?: boolean;
-    onClick: () => void;
-    buttonText?: string;
+    readonly disabled?: boolean;
+    readonly loading?: boolean;
+    readonly onClick: () => void;
+    readonly buttonText?: string;
 };
 
 export default function SubmitButton(props: Props) {
-    const buttonText = props.buttonText || "Submit";
+    const buttonText = props.buttonText ?? "Submit";
 
     return (
         <Button mt="sm" disabled={props.disabled} loading={props.loading} onClick={props.onClick} {...dimensions}>

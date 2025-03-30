@@ -7,11 +7,10 @@ import ImageUploadHandler, { ImageUploadHandlerSkeleton } from "@/components/inp
 import ImagePreview from "@/components/inputs/ImageUpload/ImagePreview";
 
 type Props = {
-    image: string | null;
-    setImage: (url: string | null) => void;
-    label: string;
-    buttonText?: string;
-    disableRemove?: boolean;
+    readonly image: string | null;
+    readonly setImage: (url: string | null) => void;
+    readonly label: string;
+    readonly disableRemove?: boolean;
 };
 
 export default function ImageUpload(props: Props) {

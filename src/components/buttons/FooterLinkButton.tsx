@@ -3,9 +3,9 @@ import { ReactNode } from "react";
 import Link from "next/link";
 
 type Props = {
-    text: string;
-    link: string;
-    icon?: ReactNode;
+    readonly text: string;
+    readonly link: string;
+    readonly icon?: ReactNode;
 };
 export default function FooterLinkButton(props: Props) {
     return (

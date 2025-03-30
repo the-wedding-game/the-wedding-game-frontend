@@ -2,7 +2,7 @@ import { Skeleton, Title } from "@mantine/core";
 import { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function TitleText(props: Props) {
@@ -13,7 +13,7 @@ export default function TitleText(props: Props) {
     );
 }
 
-export function TitleTextSkeleton(props: { w: string }) {
+export function TitleTextSkeleton(props: { readonly w: string }) {
     return <Skeleton radius={"xl"} w={props.w} {...dimensions} />;
 }
 

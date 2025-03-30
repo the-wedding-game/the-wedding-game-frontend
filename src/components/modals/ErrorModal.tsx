@@ -3,11 +3,11 @@ import BaseModal from "@/components/modals/BaseModal";
 import ErrorIcon from "@/components/icons/ErrorIcon";
 
 type Props = {
-    title: string;
-    message: string;
-    opened: boolean;
-    onClose: () => void;
-    additionalDetails?: string;
+    readonly title: string;
+    readonly message: string;
+    readonly opened: boolean;
+    readonly onClose: () => void;
+    readonly additionalDetails?: string;
 };
 
 export default function ErrorModal(props: Props) {

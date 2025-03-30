@@ -2,7 +2,7 @@ import { Badge, Skeleton } from "@mantine/core";
 import MediumText from "@/components/text/MediumText";
 
 type Props = {
-    points: number;
+    readonly points: number;
 };
 
 export default function BigPointsBadge(props: Props) {

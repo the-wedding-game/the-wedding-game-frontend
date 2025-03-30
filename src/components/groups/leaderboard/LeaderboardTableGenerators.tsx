@@ -17,7 +17,7 @@ export function generateRows(leaderBoard: LeaderboardEntry[]) {
     }
 
     return leaderBoard.map((user, index) => (
-        <Table.Tr key={index}>
+        <Table.Tr key={user.username}>
             <Table.Td>{getRankCell(index + 1)}</Table.Td>
             <Table.Td>{user.username}</Table.Td>
             <Table.Td align={"right"}>{user.points.toLocaleString()}</Table.Td>
