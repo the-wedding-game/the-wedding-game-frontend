@@ -11,9 +11,11 @@ import {
 import { ChallengeFactory } from "@/classes/Challenge/ChallengeFactory";
 import { useModal } from "@/components/modals/Modal";
 import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
+import { useRouter } from "next/navigation";
 
 export default function useCreateChallengeForm() {
     const { openModal } = useModal();
+    const router = useRouter();
 
     const form = useForm({
         mode: "uncontrolled",
@@ -40,7 +42,9 @@ export default function useCreateChallengeForm() {
         try {
             const values = form.getValues();
             await ChallengeFactory.create(values);
-            return openModal(getSuccessModal("Challenge created successfully!", "/admin/challenges"));
+            return openModal(
+                getSuccessModal("Challenge created successfully!", () => router.push("/admin/challenges")),
+            );
         } catch (error) {
             return openModal(
                 getErrorModal("There was an error creating the challenge. Please try again later!", error),
