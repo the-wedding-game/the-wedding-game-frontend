@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, ReactNode, useCallback, useContext, useState } from "react";
+import React, { createContext, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 import ErrorModal from "@/components/modals/ErrorModal";
 import SuccessModal from "@/components/modals/SuccessModal";
 
@@ -35,7 +35,7 @@ export const ModalProvider = ({ children }: { readonly children: ReactNode }) =>
     const [onCloseAction, setOnCloseAction] = useState<() => () => void>(() => () => {});
     const [additionalDetails, setAdditionalDetails] = useState<string | undefined>(undefined);
 
-    const openModal = (params: OpenModalParams) => {
+    const openModal = useCallback((params: OpenModalParams) => {
         setModalContent({ title: params.title, message: params.message });
         setModalType(params.type);
 
@@ -46,22 +46,19 @@ export const ModalProvider = ({ children }: { readonly children: ReactNode }) =>
         if (params.additionalDetails) {
             setAdditionalDetails(params.additionalDetails);
         }
-    };
+    }, []);
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setModalContent(null);
         setModalType("info");
 
         onCloseAction();
         setOnCloseAction(() => () => {});
         setAdditionalDetails(undefined);
-    };
-
-    const openModalCallback = useCallback(openModal, []);
-    const closeModalCallback = useCallback(closeModal, [onCloseAction]);
+    }, [onCloseAction]);
 
     return (
-        <ModalContext.Provider value={{ openModal: openModalCallback, closeModal: closeModalCallback }}>
+        <ModalContext.Provider value={useMemo(() => ({ openModal, closeModal }), [openModal, closeModal])}>
             {children}
 
             <ErrorModal
