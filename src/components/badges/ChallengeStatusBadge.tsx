@@ -7,7 +7,7 @@ import { Challenge } from "@/classes/Challenge/Challenge";
 import { getGenericErrorModal } from "@/constants/modal-templates";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengeStatusBadge(props: Props) {

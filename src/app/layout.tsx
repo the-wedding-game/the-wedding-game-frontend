@@ -2,7 +2,7 @@ import "./globals.css";
 import { Metadata } from "next";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from "@mantine/core";
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import Header from "@/components/groups/header/Header";
 import Footer from "@/components/groups/footer/Footer";
 import { ModalProvider } from "@/components/modals/Modal";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-    children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function RootLayout(props: Props) {

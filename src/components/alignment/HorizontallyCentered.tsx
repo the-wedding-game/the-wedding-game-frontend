@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-    children: React.ReactNode;
+    readonly children: React.ReactNode;
 };
 
 export default function HorizontallyCentered(props: Props) {

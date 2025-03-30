@@ -3,7 +3,7 @@ import PointsBadge, { PointsBadgeSkeleton } from "@/components/badges/PointsBadg
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengeCardHeader(props: Props) {

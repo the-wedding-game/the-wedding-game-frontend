@@ -7,7 +7,7 @@ import { useState } from "react";
 import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
 
 type Props = {
-    challenges: Challenge[];
+    readonly challenges: Challenge[];
 };
 
 export default function ChallengesTabs(props: Props) {

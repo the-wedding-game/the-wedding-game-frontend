@@ -9,7 +9,7 @@ import ChallengeCardImage, {
 import Link from "next/link";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengeCard(props: Props) {

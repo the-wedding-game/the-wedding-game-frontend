@@ -2,7 +2,7 @@ import { Button, Skeleton } from "@mantine/core";
 import React from "react";
 
 type Props = {
-    onClick: () => void;
+    readonly onClick: () => void;
 };
 
 export default function ImageUploadButton(props: Props) {

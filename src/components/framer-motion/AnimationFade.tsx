@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function AnimationFade(props: Props) {

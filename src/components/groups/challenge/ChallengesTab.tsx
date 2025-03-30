@@ -2,9 +2,9 @@ import { MantineColor, Tabs, Text } from "@mantine/core";
 import CountIndicatorBadge, { CountIndicatorBadgeSkeleton } from "@/components/badges/CountIndicatorBadge";
 
 type Props = {
-    name: string;
-    count: number;
-    color: MantineColor;
+    readonly name: string;
+    readonly count: number;
+    readonly color: MantineColor;
 };
 
 export default function ChallengesTab(props: Props) {
@@ -19,8 +19,8 @@ export default function ChallengesTab(props: Props) {
 }
 
 type SkeletonProps = {
-    name: string;
-    color: MantineColor;
+    readonly name: string;
+    readonly color: MantineColor;
 };
 export function ChallengesTabSkeleton(props: SkeletonProps) {
     return (

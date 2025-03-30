@@ -6,7 +6,7 @@ import EditChallengeButton from "@/components/buttons/EditChallengeButton";
 import DeleteChallengeButton from "@/components/buttons/DeleteChallengeButton";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengePageHeader(props: Props) {

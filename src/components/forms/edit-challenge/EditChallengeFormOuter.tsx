@@ -6,7 +6,7 @@ import EditChallengeFormInner, {
 import ChallengeStatusBadge, { ChallengeStatusBadgeSkeleton } from "@/components/badges/ChallengeStatusBadge";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function EditChallengeFormOuter(props: Props) {

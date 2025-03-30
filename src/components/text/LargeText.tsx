@@ -2,8 +2,8 @@ import { Text } from "@mantine/core";
 import { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
-    weight?: number;
+    readonly children: ReactNode;
+    readonly weight?: number;
 };
 
 export default function LargeText(props: Props) {

@@ -1,7 +1,7 @@
 import { Badge, Skeleton } from "@mantine/core";
 
 type Props = {
-    points: number;
+    readonly points: number;
 };
 
 export default function PointsBadge(props: Props) {

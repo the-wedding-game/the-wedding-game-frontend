@@ -1,7 +1,7 @@
 import SmallText, { SmallTextSkeleton } from "@/components/text/SmallText";
 
 type Props = {
-    description: string;
+    readonly description: string;
 };
 
 export default function ChallengeCardDescription(props: Props) {

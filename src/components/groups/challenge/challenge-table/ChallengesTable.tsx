@@ -8,7 +8,7 @@ import {
 } from "@/components/groups/challenge/challenge-table/ChallengesTableGenerators";
 
 export type Props = {
-    challenges: Challenge[];
+    readonly challenges: Challenge[];
 };
 
 export default function ChallengesTable(props: Props) {

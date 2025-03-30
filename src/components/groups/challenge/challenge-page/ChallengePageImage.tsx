@@ -3,7 +3,7 @@ import { Challenge } from "@/classes/Challenge/Challenge";
 import React from "react";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function ChallengePageImage(props: Props) {

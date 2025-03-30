@@ -1,7 +1,7 @@
 import { Skeleton, Text } from "@mantine/core";
 
 type Props = {
-    description: string;
+    readonly description: string;
 };
 
 export default function ChallengePageDescription(props: Props) {

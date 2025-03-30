@@ -5,7 +5,7 @@ import SubmitButton from "@/components/buttons/SubmitButton";
 import React, { useState } from "react";
 
 type Props = {
-    submitAnswer: (answer: string | null) => Promise<boolean>;
+    readonly submitAnswer: (answer: string | null) => Promise<boolean>;
 };
 
 export default function SubmitAnswerSubmission(props: Props) {

@@ -3,7 +3,7 @@ import SmallText from "@/components/text/SmallText";
 import { GalleryEntry } from "@/types/gallery-types";
 
 type Props = {
-    entry: GalleryEntry;
+    readonly entry: GalleryEntry;
 };
 
 export default function GalleryMetadata(props: Props) {

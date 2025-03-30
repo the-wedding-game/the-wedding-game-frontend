@@ -5,7 +5,7 @@ import { LeaderboardEntry } from "@/types/leaderboard-types";
 import { generateRows, generateSkeletonRows } from "@/components/groups/leaderboard/LeaderboardTableGenerators";
 
 export type Props = {
-    leaderboard: LeaderboardEntry[];
+    readonly leaderboard: LeaderboardEntry[];
 };
 
 export default function LeaderboardTable(props: Props) {

@@ -6,6 +6,18 @@ import {
 import { GetAnswerRequest } from "@/api/challenges/get-answer/GetAnswerRequest";
 import { GetSubmissionsRequest } from "@/api/challenges/get-submissions/GetSubmissionsRequest";
 
+type ChallengeData = {
+    id: number;
+    name: string;
+    description: string;
+    points: number;
+    image: string;
+    status: ChallengeStatus;
+    type: ChallengeType;
+    completed?: boolean;
+    answer?: string;
+};
+
 export class Challenge {
     id: number;
     name: string;
@@ -17,24 +29,16 @@ export class Challenge {
     completed?: boolean;
     answer?: string;
 
-    constructor(
-        id: number,
-        name: string,
-        description: string,
-        points: number,
-        image: string,
-        status: ChallengeStatus,
-        type: ChallengeType,
-        completed?: boolean,
-    ) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.points = points;
-        this.image = image;
-        this.status = status;
-        this.type = type;
-        this.completed = completed;
+    constructor(data: ChallengeData) {
+        this.id = data.id;
+        this.name = data.name;
+        this.description = data.description;
+        this.points = data.points;
+        this.image = data.image;
+        this.status = data.status;
+        this.type = data.type;
+        this.completed = data.completed;
+        this.answer = data.answer;
     }
 
     public async update(): Promise<void> {

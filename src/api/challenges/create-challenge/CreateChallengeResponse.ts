@@ -16,15 +16,15 @@ export class CreateChallengeResponse {
     private readonly challenge: Challenge;
 
     public constructor(data: CreateChallengeResponseBody) {
-        this.challenge = new Challenge(
-            data.id,
-            data.name,
-            data.description,
-            data.points,
-            data.image,
-            data.status,
-            data.type,
-        );
+        this.challenge = new Challenge({
+            id: data.id,
+            name: data.name,
+            description: data.description,
+            points: data.points,
+            image: data.image,
+            status: data.status,
+            type: data.type,
+        });
         this.check();
     }
 

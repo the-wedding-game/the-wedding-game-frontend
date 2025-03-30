@@ -5,9 +5,8 @@ const MAX_DELAY = 0.3;
 const STAGGER = 0.1;
 
 type Props = {
-    children: ReactNode;
-    index: number;
-    length: number;
+    readonly children: ReactNode;
+    readonly index: number;
 };
 
 export default function AnimationStagger(props: Props) {

@@ -3,10 +3,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 type Props = {
-    color: MantineColor;
-    children: string;
-    link: string;
-    icon?: ReactNode;
+    readonly color: MantineColor;
+    readonly children: string;
+    readonly link: string;
+    readonly icon?: ReactNode;
 };
 
 export default function LinkButton(props: Props) {

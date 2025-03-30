@@ -2,7 +2,7 @@ import ChallengesList, { ChallengesListSkeleton } from "@/components/groups/chal
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
-    challenges: Challenge[];
+    readonly challenges: Challenge[];
 };
 
 export default function ChallengesPanel(props: Props) {

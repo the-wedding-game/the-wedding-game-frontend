@@ -29,8 +29,8 @@ export function generateRows(challenges: Challenge[]) {
         );
     }
 
-    return challenges.map((challenge, index) => (
-        <Table.Tr key={index}>
+    return challenges.map((challenge) => (
+        <Table.Tr key={challenge.id}>
             <Table.Td>
                 <ChallengeTableImage challenge={challenge}></ChallengeTableImage>
             </Table.Td>

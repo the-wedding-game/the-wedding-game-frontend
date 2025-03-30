@@ -2,7 +2,7 @@ import { Skeleton, Text } from "@mantine/core";
 import React from "react";
 
 type Props = {
-    label: string;
+    readonly label: string;
 };
 
 export default function ImageUploadLabel(props: Props) {

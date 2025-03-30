@@ -3,9 +3,9 @@ import React from "react";
 import ImageRemoveButton from "@/components/inputs/ImageUpload/ImageRemoveButton";
 
 type Props = {
-    image: string;
-    removeImage: () => void;
-    disableRemove?: boolean;
+    readonly image: string;
+    readonly removeImage: () => void;
+    readonly disableRemove?: boolean;
 };
 
 export default function ImagePreview(props: Props) {

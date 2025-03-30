@@ -2,7 +2,7 @@ import { GalleryEntry } from "@/types/gallery-types";
 import { AspectRatio, Image, Skeleton } from "@mantine/core";
 
 type Props = {
-    entry: GalleryEntry;
+    readonly entry: GalleryEntry;
 };
 
 export default function GalleryImage(props: Props) {

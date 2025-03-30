@@ -5,7 +5,7 @@ import IncorrectAnswerBadge from "@/components/badges/IncorrectAnswerBadge";
 import CorrectAnswerBadge from "@/components/badges/CorrectAnswerBadge";
 
 type Props = {
-    submitAnswer: (answer: string | null) => Promise<boolean>;
+    readonly submitAnswer: (answer: string | null) => Promise<boolean>;
 };
 
 export default function SubmitPhotoSubmission(props: Props) {
@@ -28,13 +28,7 @@ export default function SubmitPhotoSubmission(props: Props) {
 
     return (
         <div className={`flex flex-col w-32 items-start space-y-5`}>
-            <ImageUpload
-                image={answer}
-                setImage={setAnswer}
-                buttonText={"Upload photo"}
-                label={"Your submission"}
-                disableRemove={answerCorrect}
-            />
+            <ImageUpload image={answer} setImage={setAnswer} label={"Your submission"} disableRemove={answerCorrect} />
 
             {answerChanged && !loading && !answerCorrect && <IncorrectAnswerBadge />}
             {answerChanged && !loading && answerCorrect && <CorrectAnswerBadge />}
