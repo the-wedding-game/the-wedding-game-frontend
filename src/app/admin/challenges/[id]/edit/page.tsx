@@ -1,36 +1,36 @@
 "use client";
 
 import { useUser } from "@/classes/User/UserHook";
-import { Card } from "@mantine/core";
-import HorizontallyCentered from "@/components/alignment/HorizontallyCentered";
 import { useParams } from "next/navigation";
-import EditChallengeFormOuter, {
-    EditChallengeFormOuterSkeleton,
-} from "@/components/forms/edit-challenge/EditChallengeFormOuter";
 import { useChallenge } from "@/classes/Challenge/ChallengeHook";
+import AnimationFade from "@/components/framer-motion/AnimationFade";
+import AnimationWrapper from "@/components/framer-motion/AnimationWrapper";
+import EditChallengeForm, { EditChallengeFormSkeleton } from "@/components/forms/edit-challenge/EditChallengeForm";
+import NotFound from "@/components/static/NotFound";
 
-export default function CreateChallenge() {
+export default function UpdateChallenge() {
     useUser();
     const challengeId = useParams<{ id: string }>().id;
     const { challenge, loading } = useChallenge(parseInt(challengeId));
 
     return (
-        <>
+        <AnimationWrapper>
             {challenge && (
-                <HorizontallyCentered>
-                    <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96 w-full`}>
-                        <EditChallengeFormOuter challenge={challenge} />
-                    </Card>
-                </HorizontallyCentered>
+                <AnimationFade key={"challenges"}>
+                    <EditChallengeForm challenge={challenge} />
+                </AnimationFade>
+            )}
+            {loading && (
+                <AnimationFade key={"loading"}>
+                    <EditChallengeFormSkeleton />
+                </AnimationFade>
             )}
 
-            {loading && (
-                <HorizontallyCentered>
-                    <Card shadow="sm" padding="lg" radius="md" withBorder className={`max-w-96 w-full`}>
-                        <EditChallengeFormOuterSkeleton />
-                    </Card>
-                </HorizontallyCentered>
+            {!loading && !challenge && (
+                <AnimationFade key={"not-found"}>
+                    <NotFound />
+                </AnimationFade>
             )}
-        </>
+        </AnimationWrapper>
     );
 }
