@@ -30,7 +30,7 @@ export default function HeaderMenu() {
         <Menu
             shadow="md"
             width={200}
-            trigger="hover"
+            trigger="click"
             transitionProps={{ transition: "scale-y", duration: 100, timingFunction: "ease" }}
         >
             <Menu.Target>
