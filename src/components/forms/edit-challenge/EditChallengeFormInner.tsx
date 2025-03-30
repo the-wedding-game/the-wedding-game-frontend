@@ -1,10 +1,10 @@
 "use client";
 
-import { NativeSelect, NumberInput, Textarea, TextInput } from "@mantine/core";
+import { NativeSelect, NumberInput, Skeleton, Textarea, TextInput } from "@mantine/core";
 import { CHALLENGE_TYPES } from "@/classes/Challenge/ChallengeTypes";
 import { useEffect, useState } from "react";
 import ImageUpload from "@/components/inputs/ImageUpload/ImageUpload";
-import SubmitButton from "@/components/buttons/SubmitButton";
+import SubmitButton, { SubmitButtonSkeleton } from "@/components/buttons/SubmitButton";
 import { Challenge } from "@/classes/Challenge/Challenge";
 import useCreateOrEditChallengeForm from "@/hooks/CreateOrEditChallengeFormHook";
 import { useModal } from "@/components/modals/Modal";
@@ -91,6 +91,15 @@ export default function EditChallengeFormInner(props: Props) {
             )}
 
             <SubmitButton disabled={!form.isValid()} loading={loading} onClick={submitForm} />
+        </form>
+    );
+}
+
+export function EditChallengeFormInnerSkeleton() {
+    return (
+        <form className={`flex flex-col space-y-5`}>
+            <Skeleton w={"100%"} h={500} />
+            <SubmitButtonSkeleton />
         </form>
     );
 }
