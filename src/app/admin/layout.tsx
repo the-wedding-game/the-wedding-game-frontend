@@ -6,14 +6,14 @@ import AccessDenied from "@/components/static/AccessDenied";
 import GenericLoading from "@/components/static/GenericLoading";
 
 type Props = {
-    children: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function AdminLayout(props: Props) {
     const { user, loading } = useUser();
     if (loading) return <GenericLoading />;
 
-    if (!user || !user.isAdmin()) {
+    if (!user?.isAdmin()) {
         return <AccessDenied />;
     }
 

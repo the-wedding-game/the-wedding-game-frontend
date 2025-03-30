@@ -4,7 +4,7 @@ import EditIcon from "@/components/icons/EditIcon";
 import { Challenge } from "@/classes/Challenge/Challenge";
 
 type Props = {
-    challenge: Challenge;
+    readonly challenge: Challenge;
 };
 
 export default function EditChallengeButton(props: Props) {

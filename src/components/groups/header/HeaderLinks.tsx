@@ -12,7 +12,7 @@ export default function HeaderLinks() {
             <HeaderLinkButton text={"Instructions"} link={"#"} />
             <HeaderLinkButton text={"Leaderboard"} link={"/leaderboard"} />
             <HeaderLinkButton text={"Challenges"} link={"/"} />
-            {user && user.isAdmin() && <HeaderLinkButton text={"Admin"} link={"/admin"} />}
+            {user?.isAdmin() && <HeaderLinkButton text={"Admin"} link={"/admin"} />}
         </div>
     );
 }
