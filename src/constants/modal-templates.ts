@@ -20,6 +20,6 @@ export function getErrorModal(message: string, error?: Error | unknown): OpenMod
     };
 }
 
-export function getGenericErrorModal(error: Error): OpenModalParams {
+export function getGenericErrorModal(error: Error | unknown): OpenModalParams {
     return getErrorModal("There was an unexpected error. Please try again.", error);
 }
