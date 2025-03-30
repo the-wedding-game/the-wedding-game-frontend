@@ -13,6 +13,7 @@ export function useUser() {
                 setUser(user);
             })
             .catch(() => {
+                setUser(null);
                 window.location.href = "/welcome";
             })
             .finally(() => {

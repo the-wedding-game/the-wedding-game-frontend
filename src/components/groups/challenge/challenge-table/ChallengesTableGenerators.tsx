@@ -13,8 +13,8 @@ import ChallengeCardDescription, {
     ChallengeCardDescriptionSkeleton,
 } from "@/components/groups/challenge/challenge-card/ChallengeCardDescription";
 import ViewIcon from "@/components/icons/ViewIcon";
-import EditIcon from "@/components/icons/EditIcon";
-import DeleteIcon from "@/components/icons/DeleteIcon";
+import EditChallengeButton from "@/components/buttons/EditChallengeButton";
+import DeleteChallengeButton from "@/components/buttons/DeleteChallengeButton";
 
 export function generateRows(challenges: Challenge[]) {
     if (challenges.length === 0) {
@@ -57,14 +57,10 @@ export function generateRows(challenges: Challenge[]) {
                 </LinkButton>
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <LinkButton color={"orange"} icon={<EditIcon />} link={`/admin/challenges/${challenge.id}/edit`}>
-                    Edit
-                </LinkButton>
+                <EditChallengeButton challenge={challenge} />
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <LinkButton color={"red"} icon={<DeleteIcon />} link={`/challenge/${challenge.id}`}>
-                    Delete
-                </LinkButton>
+                <DeleteChallengeButton />
             </Table.Td>
         </Table.Tr>
     ));

@@ -7,10 +7,11 @@ type Props = {
 
 export default function ChallengeTypeBadge(props: Props) {
     const color = props.type === "UPLOAD_PHOTO" ? "purple" : "yellow";
+    const text = props.type === "UPLOAD_PHOTO" ? "PHOTO" : "ANSWER";
 
     return (
         <Badge color={color} radius="sm" w={100} h={20}>
-            {props.type.split("_")[0]}
+            {text}
         </Badge>
     );
 }
