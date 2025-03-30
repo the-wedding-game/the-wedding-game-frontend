@@ -36,4 +36,8 @@ export class User {
 
         localStorage.setItem("accessToken", loginResponse.getAccessToken());
     }
+
+    public isAdmin(): boolean {
+        return this.role === "ADMIN";
+    }
 }
