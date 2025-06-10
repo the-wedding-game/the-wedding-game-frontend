@@ -7,8 +7,8 @@ import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
 import ActionButton from "@/components/buttons/ActionButton";
 
 type Props = {
-    challenge: Challenge;
-    callback?: () => void;
+    readonly challenge: Challenge;
+    readonly callback?: () => void;
 };
 
 export default function DeleteChallengeButton(props: Props) {

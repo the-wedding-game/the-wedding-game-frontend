@@ -21,7 +21,7 @@ export function useAllChallenges(includeInactive: boolean): {
 
     function removeChallenge(challengeId: number) {
         setChallenges((challenges) => {
-            return challenges?.filter((challenge) => challenge.id !== challengeId) || [];
+            return challenges?.filter((challenge) => challenge.id !== challengeId) ?? [];
         });
     }
 
