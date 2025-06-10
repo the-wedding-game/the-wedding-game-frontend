@@ -52,3 +52,8 @@ export function validateChallenge(challenge: Challenge, completedRequired: boole
     if (completedRequired && challenge.completed === undefined)
         throw new CannotProcessEntityError("GetChallengeResponse", "completed is missing");
 }
+
+export function validateChallengeId(id: number): void {
+    if (id === null || id === undefined) throw new CannotProcessEntityError("Challenge ID", "Challenge ID is required");
+    if (id <= 0) throw new CannotProcessEntityError("Challenge ID", "Challenge ID should be a positive number");
+}
