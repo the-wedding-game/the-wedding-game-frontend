@@ -5,6 +5,7 @@ import {
 } from "@/api/challenges/update-challenge/UpdateChallengeRequest";
 import { GetAnswerRequest } from "@/api/challenges/get-answer/GetAnswerRequest";
 import { GetSubmissionsRequest } from "@/api/challenges/get-submissions/GetSubmissionsRequest";
+import { DeleteChallengeRequest } from "@/api/challenges/delete-challenge/DeleteChallengeRequest";
 
 type ChallengeData = {
     id: number;
@@ -67,5 +68,10 @@ export class Challenge {
         const request = new GetSubmissionsRequest(this.id);
         const response = await request.send();
         return response.getSubmissions().length > 0;
+    }
+
+    public async delete(): Promise<void> {
+        const request = new DeleteChallengeRequest(this.id);
+        await request.send();
     }
 }
