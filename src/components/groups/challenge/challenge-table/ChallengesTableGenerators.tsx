@@ -16,13 +16,13 @@ import ViewIcon from "@/components/icons/ViewIcon";
 import EditChallengeButton from "@/components/buttons/EditChallengeButton";
 import DeleteChallengeButton from "@/components/buttons/DeleteChallengeButton";
 
-export function generateRows(challenges: Challenge[]) {
+export function generateRows(challenges: Challenge[], removeChallenge: (challengeId: number) => void) {
     if (challenges.length === 0) {
         return (
             <Table.Tr>
                 <Table.Td colSpan={3}>
                     <HorizontallyCentered>
-                        <SmallText>No one has completed any challenges yet</SmallText>
+                        <SmallText>No challenges available</SmallText>
                     </HorizontallyCentered>
                 </Table.Td>
             </Table.Tr>
@@ -60,7 +60,7 @@ export function generateRows(challenges: Challenge[]) {
                 <EditChallengeButton challenge={challenge} />
             </Table.Td>
             <Table.Td className={`sm:hidden`}>
-                <DeleteChallengeButton />
+                <DeleteChallengeButton challenge={challenge} callback={() => removeChallenge(challenge.id)} />
             </Table.Td>
         </Table.Tr>
     ));
