@@ -9,7 +9,7 @@ export class GetAllChallengesResponse {
     private readonly challenges: Challenge[];
 
     public constructor(data: GetAllChallengesResponseBody) {
-        this.challenges = data.challenges;
+        this.challenges = data.challenges.map((challenge) => new Challenge(challenge));
         this.check();
     }
 

@@ -10,7 +10,7 @@ import ChallengesTable, {
 } from "@/components/groups/challenge/challenge-table/ChallengesTable";
 
 export default function ChallengesTableWrapper() {
-    const { challenges, loading } = useAllChallenges(true);
+    const { challenges, loading, removeChallenge } = useAllChallenges(true);
 
     return (
         <Card shadow={"md"} padding="lg" radius="md" withBorder className={`min-w-[500px] sm:w-full sm:min-w-full`}>
@@ -20,7 +20,7 @@ export default function ChallengesTableWrapper() {
                 <AnimationWrapper>
                     {challenges && !loading && (
                         <AnimationFade key={"loaded"}>
-                            <ChallengesTable challenges={challenges} />
+                            <ChallengesTable challenges={challenges} removeChallenge={removeChallenge} />
                         </AnimationFade>
                     )}
 

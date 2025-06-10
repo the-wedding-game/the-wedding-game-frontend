@@ -1,12 +1,40 @@
 import { Skeleton } from "@mantine/core";
-import LinkButton from "@/components/buttons/LinkButton";
 import DeleteIcon from "@/components/icons/DeleteIcon";
+import { Challenge } from "@/classes/Challenge/Challenge";
+import { useState } from "react";
+import { useModal } from "@/components/modals/Modal";
+import { getErrorModal, getSuccessModal } from "@/constants/modal-templates";
+import ActionButton from "@/components/buttons/ActionButton";
 
-export default function DeleteChallengeButton() {
+type Props = {
+    readonly challenge: Challenge;
+    readonly callback?: () => void;
+};
+
+export default function DeleteChallengeButton(props: Props) {
+    const [loading, setLoading] = useState(false);
+    const { openModal } = useModal();
+
+    function deleteChallenge() {
+        setLoading(true);
+        props.challenge
+            .delete()
+            .then(() => {
+                openModal(getSuccessModal("Challenge deleted successfully!"));
+                if (props.callback) props.callback();
+            })
+            .catch((err) => {
+                openModal(getErrorModal("An unexpected error occurred while deleting this challenge.", err));
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }
+
     return (
-        <LinkButton color={"red"} icon={<DeleteIcon />} link={`#`}>
+        <ActionButton color={"red"} icon={<DeleteIcon />} onClick={() => deleteChallenge()} loading={loading}>
             Delete
-        </LinkButton>
+        </ActionButton>
     );
 }
 

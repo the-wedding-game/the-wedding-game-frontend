@@ -9,6 +9,7 @@ import {
 
 export type Props = {
     readonly challenges: Challenge[];
+    readonly removeChallenge: (challengeId: number) => void;
 };
 
 export default function ChallengesTable(props: Props) {
@@ -31,7 +32,7 @@ export default function ChallengesTable(props: Props) {
                 </Table.Tr>
             </Table.Thead>
 
-            <Table.Tbody>{generateRows(props.challenges)}</Table.Tbody>
+            <Table.Tbody>{generateRows(props.challenges, props.removeChallenge)}</Table.Tbody>
         </Table>
     );
 }
