@@ -11,7 +11,7 @@ export function getSuccessModal(message: string, redirection?: () => void): Open
     return openModalParams;
 }
 
-export function getErrorModal(message: string, error?: Error | unknown): OpenModalParams {
+export function getErrorModal(message: string, error?: unknown): OpenModalParams {
     return {
         title: "Oh no! ☹️",
         message: message,
@@ -20,6 +20,6 @@ export function getErrorModal(message: string, error?: Error | unknown): OpenMod
     };
 }
 
-export function getGenericErrorModal(error: Error | unknown): OpenModalParams {
+export function getGenericErrorModal(error: unknown): OpenModalParams {
     return getErrorModal("There was an unexpected error. Please try again.", error);
 }
