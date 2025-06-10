@@ -52,7 +52,7 @@ export default function useCreateOrEditChallengeForm(challenge: Challenge) {
                     openModal(getErrorModal("An unexpected error occurred while fetching the answer.", error));
                 });
         }
-    }, [challenge, form, openModal]);
+    }, [challenge, openModal]);
 
     const submit = async function () {
         try {
