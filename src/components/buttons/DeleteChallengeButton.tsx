@@ -17,7 +17,6 @@ export default function DeleteChallengeButton(props: Props) {
 
     function deleteChallenge() {
         setLoading(true);
-        console.log(props.challenge);
         props.challenge
             .delete()
             .then(() => {

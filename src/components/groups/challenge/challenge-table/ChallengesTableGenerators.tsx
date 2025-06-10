@@ -14,7 +14,7 @@ import ChallengeCardDescription, {
 } from "@/components/groups/challenge/challenge-card/ChallengeCardDescription";
 import ViewIcon from "@/components/icons/ViewIcon";
 import EditChallengeButton from "@/components/buttons/EditChallengeButton";
-import DeleteChallengeButton from "@/components/buttons/DeleteChallengeButton";
+import DeleteChallengeButton, { DeleteChallengeButtonSkeleton } from "@/components/buttons/DeleteChallengeButton";
 
 export function generateRows(challenges: Challenge[], removeChallenge: (challengeId: number) => void) {
     if (challenges.length === 0) {
@@ -94,7 +94,7 @@ export function generateSkeletonRows() {
                 <LinkButtonSkeleton />
             </Table.Td>
             <Table.Td>
-                <LinkButtonSkeleton />
+                <DeleteChallengeButtonSkeleton />
             </Table.Td>
         </Table.Tr>
     ));
