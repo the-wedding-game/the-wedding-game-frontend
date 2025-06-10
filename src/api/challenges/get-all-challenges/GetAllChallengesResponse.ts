@@ -9,7 +9,10 @@ export class GetAllChallengesResponse {
     private readonly challenges: Challenge[];
 
     public constructor(data: GetAllChallengesResponseBody) {
-        this.challenges = data.challenges;
+        this.challenges = [];
+        for (const challenge of data.challenges) {
+            this.challenges.push(new Challenge(challenge));
+        }
         this.check();
     }
 
